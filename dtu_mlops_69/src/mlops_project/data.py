@@ -19,7 +19,7 @@ class MyDataset(Dataset):
     def preprocess(self, output_folder: Path) -> None:
         """Preprocess the raw data and save it to the output folder."""
 
-def preprocess(raw_data_path: Path, output_folder: Path) -> None:
+def preprocess(raw_data_path: str | Path = "data/raw/tweets.csv", output_folder: str | Path = "data/processed") -> None:
     print("Preprocessing data...")
     dataset = MyDataset(raw_data_path)
     dataset.preprocess(output_folder)
