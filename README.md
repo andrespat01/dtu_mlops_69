@@ -25,7 +25,7 @@ As mentioned in the project description, we will use the following frameworks:
 - wandb
 - Docker
 
-# data: 
+# Data
 The data we will use for this project is the [Disaster-Tweets Dataset](https://www.kaggle.com/datasets/vstepanenko/disaster-tweets).
 The data <italic> contains over 11,000 tweets associated with disaster keywords like “crash”, “quarantine”, and “bush fires” as well as the location and keyword itself. </italic> The dataset is labeled with 1 for disaster tweets and 0 for non-disaster tweets.
 With this data we are able to train our model to classify tweets as either disaster or non-disaster tweets. 
