@@ -33,7 +33,7 @@ With this data we are able to train our model to classify tweets as either disas
 
 # What models 
 As we will be dealing with NLP, we will use a transformer model to classify the tweets. We will use the Huggingface library to implement the model. <br>
-Wihtin the Huggingface library numerous BERT-models and <italic> the first public large-scale pre-trained language model for English Tweets </italic>, the [BERTweet](https://huggingface.co/docs/transformers/model_doc/bertweet) will definitely be considered. <br>
+Within the Huggingface library numerous BERT-models and <italic> the first public large-scale pre-trained language model for English Tweets </italic>, the [BERTweet](https://huggingface.co/docs/transformers/model_doc/bertweet) will definitely be considered. <br>
 Additionally we will experiment with other version of the BERT-model to see which one performs the best on our dataset. <br>
 
 
