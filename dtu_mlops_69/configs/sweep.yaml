@@ -1,0 +1,19 @@
+program: src/mlobs_project/train.py
+name: sweepdemo
+project: corrupt_mnist  # change this
+entity: niklas-kjolbro-danmarks-tekniske-universitet-dtu  # change this
+metric:
+    goal: minimize
+    name: validation_loss
+parameters:
+    lr:
+        min: 0.0001
+        max: 0.1
+        distribution: log_uniform
+    batch-size:
+        values: [16, 32, 64]
+    epochs:
+        values: [5, 10, 15]
+
+method: random  # Add this line to define the sweep method
+run_cap: 10
