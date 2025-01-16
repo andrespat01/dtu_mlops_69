@@ -3,6 +3,7 @@ import pandas as pd
 import re
 import torch
 import typer
+from kaggle.api.kaggle_api_extended import KaggleApi
 from transformers import AutoTokenizer
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset
@@ -74,6 +75,20 @@ class MyDataset(Dataset):
         torch.save(attention_mask, output_folder / "attention_mask.pt")
         torch.save(targets, output_folder / "targets.pt")
 
+
+def download_dataset(dataset_name: str = "vstepanenko/disaster-tweets", raw_data_dir: Path = Path("data/raw")) -> None:
+    """Download dataset from Kaggle."""
+    # Authenticate with Kaggle API
+    api = KaggleApi()
+    api.authenticate()
+
+    # Create directory for raw data if it doesn't exist
+    raw_data_dir.mkdir(parents=True, exist_ok=True)
+
+    # Download dataset from Kaggle
+    api.dataset_download_files(dataset_name, path=raw_data_dir, unzip=True)
+    print(f"Downloaded {dataset_name} to {raw_data_dir}")
+
 def preprocess(raw_data_path: str = "data/raw/tweets.csv", output_folder: str = "data/processed") -> None:
     print("Preprocessing data...")
     dataset = MyDataset(raw_data_path)
@@ -95,4 +110,4 @@ def tweets() -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
 
 
 if __name__ == "__main__":
-    typer.run(tweets)
+    typer.run(download_dataset)
