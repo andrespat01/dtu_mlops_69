@@ -1,3 +1,6 @@
+"""
+We don't need this if we use the Pytorch Lightning framework?
+
 import matplotlib.pyplot as plt
 import torch
 import typer
@@ -6,7 +9,6 @@ from model import Model
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
-    """Train a model on MNIST."""
     model = Model().to(DEVICE)
     
     # Load data
@@ -22,7 +24,7 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
     
     for epoch in range(epochs):
         model.train()
-        """
+
         for i, (?, ?) in enumerate(train_dataloader):
             optimizer.zero_grad()
             y_pred = model(?)
@@ -30,7 +32,8 @@ def train(lr: float = 1e-3, batch_size: int = 32, epochs: int = 10) -> None:
             loss.backward()
             optimizer.step()
              
-        """
+
         
     # Save model
     #torch.save(model.state_dict(), "models/model.pth")
+ """

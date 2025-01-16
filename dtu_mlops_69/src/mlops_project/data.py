@@ -58,10 +58,10 @@ class MyDataset(Dataset):
         
         # Combine location and text when tokenizing?
         tokenized_data = tokenizer(
-            list(self.data['location'] + self.data["text"]),
-            padding=True,
+            list(self.data['location'] + " | " + self.data["text"]),
+            padding="longest",
             truncation=True,
-            max_length=128, # BERT max length (not sure how long it should be)
+            #max_length=128, # BERT max length (not sure how long it should be)
             return_tensors="pt", # PyTorch tensors
         )
 
@@ -110,4 +110,4 @@ def tweets() -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
 
 
 if __name__ == "__main__":
-    typer.run(download_dataset)
+    typer.run(preprocess)

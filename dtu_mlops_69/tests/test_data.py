@@ -16,6 +16,6 @@ def test_data():
     for dataset in [train_set, test_set]:
         for idx, (input_ids, attention_mask, targets) in enumerate(dataset):
             # Check the expected shapes and valid values
-            assert input_ids.shape == (60,)  # should be 60 after padding
-            assert attention_mask.shape == (60,)  # should be 60 after padding
+            assert input_ids.shape == (61,)  # should be 60 after padding
+            assert attention_mask.shape == (61,)  # should be 60 after padding
             assert targets in [0, 1]  # Label should be either 0 or 1
