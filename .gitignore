@@ -2,4 +2,3 @@
 dtu_mlops_69/models/epoch=0-step=57-v1.ckpt
 dtu_mlops_69/models/epoch=0-step=57.ckpt
 dtu_mlops_69/models/model.pth
-wandb
