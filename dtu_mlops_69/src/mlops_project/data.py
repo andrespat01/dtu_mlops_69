@@ -4,7 +4,6 @@ import pandas as pd
 import re
 import torch
 import typer
-from kaggle.api.kaggle_api_extended import KaggleApi
 from transformers import AutoTokenizer
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset
@@ -97,6 +96,12 @@ def download_dataset(bucket_name: str = "d_tweets", blob_name: str = "tweets.csv
     print(f"Downloaded {blob_name} from bucket {bucket_name} to {destination_file}")
 
 def preprocess(raw_data_path: str = "data/raw/tweets.csv", output_folder: str = "data/processed") -> None:
+    print("Preprocessing data...")
+    raw_data_dir = Path(raw_data_path)
+    if not raw_data_dir.exists():
+        print("Raw data not found, downloading...")
+        download_dataset()
+
     print("Preprocessing data...")
     dataset = MyDataset(raw_data_path)
     dataset.preprocess(output_folder)
