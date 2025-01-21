@@ -1,4 +1,5 @@
 from pathlib import Path
+from google.cloud import storage
 import pandas as pd
 import re
 import torch
@@ -76,18 +77,24 @@ class MyDataset(Dataset):
         torch.save(targets, output_folder / "targets.pt")
 
 
-def download_dataset(dataset_name: str = "vstepanenko/disaster-tweets", raw_data_dir: Path = Path("data/raw")) -> None:
-    """Download dataset from Kaggle."""
-    # Authenticate with Kaggle API
-    api = KaggleApi()
-    api.authenticate()
-
+def download_dataset(bucket_name: str = "d_tweets", blob_name: str = "tweets.csv", raw_data_dir: Path = Path("data/raw")) -> None:
+    """Download dataset from Google Cloud Storage."""
     # Create directory for raw data if it doesn't exist
     raw_data_dir.mkdir(parents=True, exist_ok=True)
 
-    # Download dataset from Kaggle
-    api.dataset_download_files(dataset_name, path=raw_data_dir, unzip=True)
-    print(f"Downloaded {dataset_name} to {raw_data_dir}")
+    # Initialize the GCS client
+    client = storage.Client()
+
+    # Access the bucket and blob
+    bucket = client.bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+
+    # Local file path to save the downloaded file
+    destination_file = raw_data_dir / blob_name
+
+    # Download the blob to the destination
+    blob.download_to_filename(destination_file)
+    print(f"Downloaded {blob_name} from bucket {bucket_name} to {destination_file}")
 
 def preprocess(raw_data_path: str = "data/raw/tweets.csv", output_folder: str = "data/processed") -> None:
     print("Preprocessing data...")
