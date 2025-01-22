@@ -3,6 +3,9 @@ Create the API instance:
 # Memory usage = 2GB
 # CPU = 2
 
+Ikke prøv og kør denne kode 
+(den vil lave en nyt instance eller skrive over den nuværende)
+
 gcloud functions deploy tweet_predict \
   --runtime python311 \
   --trigger-http \
@@ -12,7 +15,7 @@ gcloud functions deploy tweet_predict \
   --cpu 2 \
   --region europe-west3
 
-Make a prediction:
+# Make a prediction:
 # Input to the model is:
 # input = 'location | text' 
 # if location not provided then default to 'unknown'
