@@ -1,0 +1,5 @@
+torch==2.2.2
+transformers==4.48.0
+functions-framework>=3.7.0
+google-cloud-storage==2.19.0
+regex == 2024.11.6
