@@ -23,16 +23,20 @@ The directory structure of the project looks like this:
 │       └── index.md
 ├── models/                   # Trained models
 ├── notebooks/                # Jupyter notebooks
+├── prediction_api/           # Source code
+│   ├── api/
+│   │   ├── main.py           # The function uploaded to cloud run
+│   │   └── requirements.txt  # The requirements to run the function
+│   └── read_me.txt           # Explains how to use the api
+│
 ├── reports/                  # Reports
 │   └── figures/
 ├── src/                      # Source code
-│   ├── project_name/
+│   ├── mlops_project/
 │   │   ├── __init__.py
 │   │   ├── api.py
 │   │   ├── data.py
-│   │   ├── evaluate.py
 │   │   ├── models.py
-│   │   ├── train.py
 │   │   └── visualize.py
 └── tests/                    # Tests
 │   ├── __init__.py
