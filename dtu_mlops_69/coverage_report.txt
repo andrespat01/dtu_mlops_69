@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.11, pytest-8.3.4, pluggy-1.5.0
+rootdir: /Users/niklaskjolbro/Documents/Github/Project_MLOBS/dtu_mlops_69
+configfile: pyproject.toml
+plugins: cov-6.0.0, anyio-4.8.0
+collected 4 items
+
+tests/test_api.py .                                                      [ 25%]
+tests/test_data.py .                                                     [ 50%]
+tests/test_model.py ..                                                   [100%]
+
+=============================== warnings summary ===============================
+tests/test_model.py::test_model[32]
+tests/test_model.py::test_model[64]
+  /Users/niklaskjolbro/opt/anaconda3/envs/ml/lib/python3.11/site-packages/pytorch_lightning/core/module.py:441: You are trying to `self.log()` but the `self.trainer` reference is not registered on the model yet. This is most likely because the model hasn't been passed to the `Trainer`
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+--------- coverage: platform darwin, python 3.11.11-final-0 ----------
+Name                  Stmts   Miss  Cover   Missing
+---------------------------------------------------
+tests/__init__.py         4      0   100%
+tests/test_api.py        11      2    82%   12-13
+tests/test_data.py       16      0   100%
+tests/test_model.py      17      0   100%
+---------------------------------------------------
+TOTAL                    48      2    96%
+
+======================== 4 passed, 2 warnings in 19.24s ========================
