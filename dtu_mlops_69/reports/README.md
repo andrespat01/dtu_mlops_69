@@ -58,16 +58,16 @@ will check the repositories and the code to verify your answers.
     are using (M2+M6)
 * [x] Remember to comply with good coding practices (`pep8`) while doing the project (M7)
 * [x] Do a bit of code typing and remember to document essential parts of your code (M7)
-* [ ] Setup version control for your data or part of your data (M8)
+* [x] Setup version control for your data or part of your data (M8)
 * [x] Add command line interfaces and project commands to your code where it makes sense (M9)
 * [ ] Construct one or multiple docker files for your code (M10)
 * [ ] Build the docker files locally and make sure they work as intended (M10)
-* [ ] Write one or multiple configurations files for your experiments (M11)
-* [ ] Used Hydra to load the configurations and manage your hyperparameters (M11)
-* [ ] Use profiling to optimize your code (M12)
+* [x] Write one or multiple configurations files for your experiments (M11)
+* [x] Used Hydra to load the configurations and manage your hyperparameters (M11)
+* [x] Use profiling to optimize your code (M12)
 * [ ] Use logging to log important events in your code (M14)
 * [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code (M14)
-* [sat det op, men min computer exploderer hvis jeg kører det] Consider running a hyperparameter optimization sweep (M14)
+* [x] Consider running a hyperparameter optimization sweep (M14)
 * [x] Use PyTorch-lightning (if applicable) to reduce the amount of boilerplate in your code (M15)
 
 ### Week 2
@@ -118,7 +118,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 1 fill here ---
+--- 69 ---
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -129,7 +129,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 2 fill here ---
+--- s194045 Niklas August Kjølbro ---
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
@@ -143,7 +143,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 3 fill here ---
+--- question 4 fill here ---
 
 ## Coding environment
 
@@ -163,7 +163,23 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 4 fill here ---
+--- To manage dependencies in this project, conda was used for environment managements (as suggested in the modules) and requirements.txt to track Python depencencies.
+
+The process for a new team member to replicate the environment:
+1) Install conda
+Not strictly necessary, but highly suggested for managing isolated environments and dependencies effectively. You could also use other tools like virtualenv or pipenv, but our team has used Conda, so no tutorial on how to use other tools is provided.
+
+2) 
+a - There are two ways from here:
+Either create environment using the provided environment file (environment.yml):
+conda env create -f environment.yml
+
+b - Or create an environment your self (use python 3.11) and simply install from the requirements.txt:
+conda create -n ml_env python=3.11
+conda activate ml_env
+pip install -r requirements.txt
+
+These steps should be all that is needed to reproduce the environment and work on the project. ---
 
 ### Question 5
 
@@ -194,7 +210,11 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 6 fill here ---
+--- For code quality and formatting, we followed the suggested practices from the modules, maintaining consistent good coding practices throughout the project. This was to ensure that the code was easy to read and understand, both for others and for myself. The PEP 8 styling conventions were followed, utilizing the tool "ruff" to check and format the code automatically in compliance with PEP 8 guidelines.
+
+In terms of documentation, docstrings were used in functions. The aim was to strike a balance in documentation: not too brief to miss important details, but not excessive to overwhelm users. This follows the principle "Code tells you how; comments tell you why."
+
+Typing was used throughout all functions in the project to improve code clarity and reduce potential errors regarding the types of function arguments and return values, especially as the project grows.---
 
 ## Version control
 
@@ -213,7 +233,9 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 7 fill here ---
+--- Unit tests were created for the data, model, and later the API. The data test ensures the dataset is correct, with the right number of samples (9096 training, 2274 testing), and validates input data shapes (input_ids and attention_mask of size 61) and target labels (1). The model test checks the forward pass output shape (2) and ensures the output is a tensor. It also verifies that the loss is correctly computed during the training step.The API test checks that the response from the deployed API contains the correct status code, valid JSON, and a prediction value of 0 or 1.
+Unit tests
+ ---
 
 ### Question 8
 
@@ -228,7 +250,8 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 8 fill here ---
+--- Our code coverage was in total 97% meaning that 97% of our code modules (data.py, model.py & api.py) is covered by tests. I would not trust this to be error free. While this is a high percentage, it doesn't guarantee that the code is entirely error-free because code coverage measures how much of the code is executed by tests, but it doesn't assess the quality or thoroughness of those tests.
+These are many reasons not to trust code coverage, for reason is that the tests are dedefined by us but there can easily be scenarios or edge cases that was not accounted for in the tests, which can cause issues. Complex functions are also difficult to tests probably or complex interactions.---
 
 ### Question 9
 
@@ -243,7 +266,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 9 fill here ---
+---Yes, we exclusively used GitHub to work on the project and share code. While we didn’t use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
 
 ### Question 10
 
@@ -258,7 +281,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 10 fill here ---
+--- I tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
 
 ### Question 11
 
@@ -292,9 +315,13 @@ will check the repositories and the code to verify your answers.
 > Example:
 > *We used a simple argparser, that worked in the following way: Python  my_script.py --lr 1e-3 --batch_size 25*
 >
-> Answer:
+> Answer: --- I configured the experiment using a config.yaml file to specify key hyperparameters like learning rate, batch size, and epochs, ensuring reproducibility. However, training was computationally intensive, taking a long time and using significant memory. To optimize this, I implemented a sweep configuration with W&B, defining hyperparameter ranges for automated experimentation (e.g., learning rate, batch size, and epochs). The sweep was designed to find the best parameters through multiple runs but wasn't executed due to the excessive time it would require.
+To run the configs.yaml simply run:
+python src/mlops_project/model.py --config_path config.yaml
 
---- question 12 fill here ---
+For sweep:
+python src/mlops_project/model.py --config_path sweep.yaml
+---
 
 ### Question 13
 
@@ -309,7 +336,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 13 fill here ---
+--- To ensure the reproducibility of our experiments and prevent the loss of information, we implemented version control for our data using DVC. Although we mostly interacted with DVC through the terminal, it allowed us to track changes to the dataset and model files, making it easy to revert to previous versions if necessary. Additionally, we used configuration files to store the specifications for our experiments, including model parameters and training settings, which made it easier to rerun experiments with the same setup. Finally, we stored a database of predicted values after each model run, ensuring that we kept track of all outputs generated by the model, allowing us to reference and compare results across different experiment iterations. ---
 
 ### Question 14
 
@@ -326,7 +353,24 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 14 fill here ---
+--- 
+[this figure](reports/figures/WANDB_config.png)
+The provided screenshot from W&B shows the metrics tracked during training: train_acc, train_loss, val_acc, val_loss, and epoch.
+* Train Accuracy (train_acc): Measures how well the model performs on the training data. It helps monitor overfitting or underfitting trends.
+* Train Loss (train_loss): Tracks the error the model makes on the training set. A decreasing loss indicates learning progress.
+* Validation Accuracy (val_acc): Measures performance on unseen data. In this case, it is increasing, indicating the model is improving generalization despite fluctuations in validation loss.
+* Validation Loss (val_loss): Tracks error on the validation set. Here, it is increasing, which may signal overfitting or an issue with the training process.
+Epoch: the number of training iterations, giving context to the trends.
+The early stopping mechanism stopped training at epoch 3 (out of a maximum of 5), which prevented unnecessary computation as val_acc continued increasing while val_loss began to increase. This suggests the model is still learning useful patterns but may also be starting to overfit.
+
+Additional confusion matrix was made to evaluate the classification performance on disaster tweets:
+[this figure](reports/figures/confusion_matrix.png)
+
+The confusion matrix reveals an imbalance in the model's performance. While it performs well on Class 0 (real-disaster tweets), with low misclassification (24 errors), it struggles with Class 1 (non-disaster tweets), misclassifying a significant portion (230 errors).
+Suggests:
+1) Class imbalance in the dataset, which biases the model toward the majority class (non-disaster tweets).
+2) The need for additional techniques to improve performance. However, improving the model was not prioritized in this course, as the main focus was not on maximizing model accuracy but on understanding the workflow, experimentation, and operational processes of machine learning development.
+ ---
 
 ### Question 15
 

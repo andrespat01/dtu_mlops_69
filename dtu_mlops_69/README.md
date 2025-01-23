@@ -6,11 +6,21 @@ MLOPS project
 
 The directory structure of the project looks like this:
 ```txt
+├── .dvc
 ├── .github/                  # Github actions and dependabot
 │   ├── dependabot.yaml
 │   └── workflows/
 │       └── tests.yaml
+├── app/
+│   └── app/
+│   │   ├── __init__.py
+│   │   └── main.py
+│   ├── Dockerfile
+│   └── requirements.txt
 ├── configs/                  # Configuration files
+│   ├── config_cpu.yaml
+│   ├── config.yaml
+│   └── sweep.yaml
 ├── data/                     # Data directory
 │   ├── processed
 │   └── raw
@@ -22,6 +32,7 @@ The directory structure of the project looks like this:
 │   └── source/
 │       └── index.md
 ├── models/                   # Trained models
+│   └── model.pth
 ├── notebooks/                # Jupyter notebooks
 ├── prediction_api/           # Source code
 │   ├── api/
@@ -49,14 +60,24 @@ The directory structure of the project looks like this:
 │   ├── test_api.py
 │   ├── test_data.py
 │   └── test_model.py
+├── .coverage
+└── wandb/                    # Wandb folder
+│   └── latest-run/
+│       ├── files/...
+│       ├── logs/...
+│       └── temp/...
+├── .dvcignore
 ├── .gitignore
 ├── .pre-commit-config.yaml
+├── coverage_report.txt       # Coverage report
+├── environment.yml
 ├── LICENSE
 ├── pyproject.toml            # Python project file
-├── coverage_report.txt       # Coverage report
 ├── README.md                 # Project README
+├── report.html
 ├── requirements.txt          # Project requirements
 ├── requirements_dev.txt      # Development requirements
+├── setup.py                  # 
 └── tasks.py                  # Project tasks
 ```
 

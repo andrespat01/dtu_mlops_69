@@ -170,7 +170,10 @@ dmypy.json
 cython_debug/
 
 # Ignore raw data folder
-data/raw/
+data/raw/*
+
+# But do not ignore .dvc files in the raw data folder
+!data/raw/*.dvc
 
 # Ignore processed data folder
 data/processed/

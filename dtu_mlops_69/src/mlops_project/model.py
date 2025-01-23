@@ -4,8 +4,11 @@ import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from src.mlops_project.data import tweets
 import typer
+import wandb
 from transformers import AutoModel
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
+from omegaconf import OmegaConf
+
 
 """
 Found this github project:
@@ -115,8 +118,23 @@ class Model(pl.LightningModule):
         )
 
 
-def train(lr: float = 0.001, batch_size: int = 32, epochs: int = 5) -> None:
+def train(config_path: str = "configs/config.yaml") -> None:
     """Train the model."""
+    # Using the config.yaml (or sweep.yaml) file, to define the hyperparameters for the model training:
+    # hyperparameters:
+    #   batch_size
+    #   epochs
+    #   Learning rate = lr
+    
+    # Load the specified .yaml configuration file
+    config = OmegaConf.load(config_path)
+    
+    # Access the hyperparameters from the loaded config
+    lr = config.hyperparameters.lr
+    batch_size = config.hyperparameters.batch_size
+    epochs = config.hyperparameters.epochs
+    
+    # Load the model
     bert = AutoModel.from_pretrained("bert-base-uncased", return_dict=False)
     model = Model(bert, lr)
     print(f"Model architecture: {model}")
