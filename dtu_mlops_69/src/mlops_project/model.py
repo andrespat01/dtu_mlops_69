@@ -75,7 +75,8 @@ class Model(pl.LightningModule):
         outputs = self(sent_id, mask)  # Pass the inputs to the model
         loss = nn.CrossEntropyLoss()(outputs, targets)  # Compute the loss
 
-        acc = (outputs.argmax(dim=1) == targets).float().mean()  # Calculate accuracy
+        # Calculate accuracy
+        acc = (outputs.argmax(dim=1) == targets).float().mean()
         self.log("train_loss", loss)  # Log the training loss
         self.log("train_acc", acc)  # Log the training accuracy
 
@@ -91,7 +92,8 @@ class Model(pl.LightningModule):
         )
         outputs = self(sent_id, mask)  # Pass the inputs to the model
         loss = nn.CrossEntropyLoss()(outputs, targets)  # Compute the loss
-        acc = (outputs.argmax(dim=1) == targets).float().mean()  # Calculate accuracy
+        # Calculate accuracy
+        acc = (outputs.argmax(dim=1) == targets).float().mean()
         self.log("val_loss", loss, on_epoch=True)  # Log the validation loss
         self.log("val_acc", acc, on_epoch=True)
 
@@ -118,7 +120,8 @@ def train(lr: float = 0.001, batch_size: int = 32, epochs: int = 5) -> None:
     bert = AutoModel.from_pretrained("bert-base-uncased", return_dict=False)
     model = Model(bert, lr)
     print(f"Model architecture: {model}")
-    print(f"Number of parameters: {sum(p.numel() for p in model.parameters())}")
+    print(
+        f"Number of parameters: {sum(p.numel() for p in model.parameters())}")
 
     # Callbacks
     early_stopping_callback = EarlyStopping(

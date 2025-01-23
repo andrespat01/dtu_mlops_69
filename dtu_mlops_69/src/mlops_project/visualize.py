@@ -13,13 +13,13 @@ from sklearn.metrics import accuracy_score
 def visualize(model_checkpoint: str = "models/model.pth", figure_name: str = "confusion_matrix.png") -> None:
     """Visualize model predictions."""
     bert = AutoModel.from_pretrained('bert-base-uncased', return_dict=False)
-    model = Model(bert, lr = 0.001)
+    model = Model(bert, lr=0.001)
 
     # Load the model weights
     model.load_state_dict(torch.load(model_checkpoint))
-    model.eval()  # Set the model to evaluation mode    
+    model.eval()  # Set the model to evaluation mode
 
-    _, val_set = tweets() 
+    _, val_set = tweets()
     val_dataloader = DataLoader(val_set, batch_size=32, num_workers=4)
 
     # predictions and true labels
@@ -31,7 +31,7 @@ def visualize(model_checkpoint: str = "models/model.pth", figure_name: str = "co
             sent_id, mask, targets = batch
             outputs = model(sent_id, mask)
             preds = outputs.argmax(dim=1)
-            
+
             all_preds.append(preds)
             all_true.append(targets)
 
@@ -46,7 +46,8 @@ def visualize(model_checkpoint: str = "models/model.pth", figure_name: str = "co
     cm = confusion_matrix(all_true.cpu(), all_preds.cpu())
 
     # Plot confusion matrix using seaborn
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=['Class 0', 'Class 1'], yticklabels=['Class 0', 'Class 1'])
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=[
+                'Class 0', 'Class 1'], yticklabels=['Class 0', 'Class 1'])
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.title('Confusion Matrix')

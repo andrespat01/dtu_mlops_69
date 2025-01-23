@@ -2,10 +2,13 @@ import streamlit as st
 from api import predict_deployed_api
 
 # Function to simulate prediction
+
+
 def predict(tweet: str, location: str) -> int:
     response = predict_deployed_api(tweet, location)
     prediction = response.json()
     return prediction["prediction"][0]
+
 
 def main():
     # Streamlit app
@@ -22,11 +25,14 @@ def main():
         else:
             # prediction
             prediction = predict(tweet, location)
-            
+
             if prediction == 0:
-                st.success("Our model predicts that this was NOT about a real disaster.")
+                st.success(
+                    "Our model predicts that this was NOT about a real disaster.")
             else:
-                st.success("Our model predicts that this tweet was about a real disaster.")
+                st.success(
+                    "Our model predicts that this tweet was about a real disaster.")
+
 
 if __name__ == "__main__":
     # To run:

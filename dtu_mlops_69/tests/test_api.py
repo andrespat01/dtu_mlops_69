@@ -1,5 +1,6 @@
 from src.mlops_project.api import predict_deployed_api
 
+
 def test_api(input_data: str = "There's a massive earthquake!", location: str = "California") -> None:
     response = predict_deployed_api(input_data, location)
 
@@ -11,10 +12,9 @@ def test_api(input_data: str = "There's a massive earthquake!", location: str = 
         prediction = response.json()
     except ValueError:
         assert False, "Response is not valid JSON"
-    
+
     # Check format
     assert prediction is not None, "Response is None"
-    
+
     assert "prediction" in prediction, "Prediction key not found in response"
     assert prediction["prediction"][0] == 0 or prediction["prediction"][0] == 1, "Invalid prediction value"
-    

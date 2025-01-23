@@ -16,11 +16,12 @@ reference_data.columns = reference_data.columns.str.strip()
 
 current_data = pd.read_csv('prediction_api/prediction_database.csv')
 current_data = current_data.drop(columns=['time'])
-current_data.columns = current_data.columns.str.strip() 
+current_data.columns = current_data.columns.str.strip()
 current_data = current_data.rename(columns={"prediction": "target"})
 
 # Generating the report:
-report = Report(metrics=[DataDriftPreset(), DataQualityPreset(), TargetDriftPreset()])
+report = Report(metrics=[DataDriftPreset(),
+                DataQualityPreset(), TargetDriftPreset()])
 report.run(reference_data=reference_data, current_data=current_data)
 report.save_html('report.html')
 

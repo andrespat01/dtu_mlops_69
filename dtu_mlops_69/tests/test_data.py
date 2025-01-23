@@ -6,12 +6,16 @@ import os.path
 import pytest
 
 # Test the data module
+
+
 @pytest.mark.skipif(not os.path.exists("data/processed/"), reason="Data files not found")
 def test_data():
     train_set, test_set = tweets()
-    assert len(train_set) == 9096, "Dataset did not have the correct number of training samples"
-    assert len(test_set) == 2274, "Dataset did not have the correct number of test samples"
-    
+    assert len(
+        train_set) == 9096, "Dataset did not have the correct number of training samples"
+    assert len(
+        test_set) == 2274, "Dataset did not have the correct number of test samples"
+
     # check the dataset is correct
     for dataset in [train_set, test_set]:
         for idx, (input_ids, attention_mask, targets) in enumerate(dataset):

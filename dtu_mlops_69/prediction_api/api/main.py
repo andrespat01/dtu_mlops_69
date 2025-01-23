@@ -12,6 +12,8 @@ MODEL_FILE = "model.pth"
 tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
 
 # Model:
+
+
 class model(nn.Module):
     def __init__(self):
         super(model, self).__init__()
@@ -27,6 +29,7 @@ class model(nn.Module):
         x = self.fc2(x)
         return self.softmax(x)
 
+
 # Load the model from Google Cloud Storage
 client = storage.Client()
 bucket = client.get_bucket(BUCKET_NAME)
@@ -40,6 +43,7 @@ model_buffer = io.BytesIO(model_data)
 model = model()
 model.load_state_dict(torch.load(model_buffer))
 model.eval()
+
 
 def clean_text(text: str) -> str:
     """Clean the tweet text by removing URLs, hashtags, mentions, and special characters."""
@@ -55,27 +59,28 @@ def clean_text(text: str) -> str:
 def disaster_tweet_classifier(request):
     """Classifier function for disaster tweets prediction."""
     request_json = request.get_json()
-    
+
     if request_json and "input_data" in request_json:
         input_data = request_json["input_data"]
-        
+
         # Default to location = "unknown" then check if location is provided
         location = "unknown"
         if "location" in request_json and request_json["location"]:
             location = clean_text(request_json["location"])
-        
+
         # Clean the text
         # Format input of the tweet text to model:
         # input = 'location | text'
         cleaned_text = f"{location} | {clean_text(input_data[0])}"
-        inputs = tokenizer(cleaned_text, padding=True, truncation=True, return_tensors="pt", max_length=128)
+        inputs = tokenizer(cleaned_text, padding=True,
+                           truncation=True, return_tensors="pt", max_length=128)
         sent_id = inputs["input_ids"]
         mask = inputs["attention_mask"]
-        
+
         # Make prediction
         with torch.no_grad():
             outputs = model(sent_id, mask)
-        
+
         # Get the prediction (class with highest score)
         prediction = outputs.argmax(dim=1).tolist()
 
