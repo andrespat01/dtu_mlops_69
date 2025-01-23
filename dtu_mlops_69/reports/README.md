@@ -143,7 +143,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- I tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
+--- question 4 fill here ---
 
 ## Coding environment
 
@@ -163,7 +163,23 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 4 fill here ---
+--- To manage dependencies in this project, conda was used for environment managements (as suggested in the modules) and requirements.txt to track Python depencencies.
+
+The process for a new team member to replicate the environment:
+1) Install conda
+Not strictly necessary, but highly suggested for managing isolated environments and dependencies effectively. You could also use other tools like virtualenv or pipenv, but our team has used Conda, so no tutorial on how to use other tools is provided.
+
+2) 
+a - There are two ways from here:
+Either create environment using the provided environment file (environment.yml):
+conda env create -f environment.yml
+
+b - Or create an environment your self (use python 3.11) and simply install from the requirements.txt:
+conda create -n ml_env python=3.11
+conda activate ml_env
+pip install -r requirements.txt
+
+These steps should be all that is needed to reproduce the environment and work on the project. ---
 
 ### Question 5
 
@@ -194,7 +210,11 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 6 fill here ---
+--- For code quality and formatting, we followed the suggested practices from the modules, maintaining consistent good coding practices throughout the project. This was to ensure that the code was easy to read and understand, both for others and for myself. The PEP 8 styling conventions were followed, utilizing the tool "ruff" to check and format the code automatically in compliance with PEP 8 guidelines.
+
+In terms of documentation, docstrings were used in functions. The aim was to strike a balance in documentation: not too brief to miss important details, but not excessive to overwhelm users. This follows the principle "Code tells you how; comments tell you why."
+
+Typing was used throughout all functions in the project to improve code clarity and reduce potential errors regarding the types of function arguments and return values, especially as the project grows.---
 
 ## Version control
 
@@ -258,7 +278,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 10 fill here ---
+--- I tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
 
 ### Question 11
 
