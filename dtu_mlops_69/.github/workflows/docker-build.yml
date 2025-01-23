@@ -1,0 +1,37 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches:
+      - main  # Trigger when changes are pushed to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger for pull requests to 'main'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Log in to DockerHub or GCR
+      - name: Log in to Container Registry
+        run: echo "${{ secrets.GCP_DOCKER_AUTH }}" | docker login -u _json_key --password-stdin https://gcr.io
+
+      # Build and Push Docker Image for API
+      - name: Build and Push API Docker Image
+        run: |
+          docker build -f dockerfiles/api.Dockerfile -t gcr.io/<YOUR_PROJECT_ID>/api:latest .
+          docker push gcr.io/<YOUR_PROJECT_ID>/api:latest
+
+      # Build and Push Docker Image for Training
+      - name: Build and Push Training Docker Image
+        run: |
+          docker build -f dockerfiles/train.Dockerfile -t gcr.io/<YOUR_PROJECT_ID>/train:latest .
+          docker push gcr.io/<YOUR_PROJECT_ID>/train:latest
