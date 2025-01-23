@@ -143,7 +143,9 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 4 fill here ---
+--- For this project, we chose to use the Huggingface library as our third-party package to implement a transformer model. Specifically, we used the pre-trained BERT models provided by Huggingface to classify tweets as either disaster or non-disaster, drawing inspiration from a similar project referenced in models.py. 
+Huggingface streamlined the process of working with NLP models by providing ready-to-use, state-of-the-art transformer models and tokenizers. It integrated well with PyTorch LightningModule helping us combine advanced NLP capabilities with PyTorch's boilerplate-free training workflow, simplifying the implementation of our model training and evaluation pipeline.
+During preprocessing, we used the Huggingface AutoTokenizer with the pre-trained bert-base-uncased tokenizer to process the tweets. The tweets and location were combined before tokenization. The tokenizer handled essential tasks such as padding and truncation, generating input_ids and attention_mask tensors that were later saved and used as input for the model during training and when making prediction with the model. ---
 
 ## Coding environment
 
@@ -195,7 +197,7 @@ These steps should be all that is needed to reproduce the environment and work o
 >
 > Answer:
 
---- question 5 fill here ---
+--- The cookiecutter MLOps template provided in M6 was the starting point and was used throughout the project. We used all the default folders, except for the "notebook" folder, which we removed as we did not use any Jupyter notebooks in our project. In addition to the default structure, we added new folders, including "API" and "prediction_api," to set up and deploy the Google Cloud API for serving the model and handling predictions. The cookiecutter template significantly simplified the project setup, helping us quickly organize and structure our code from the beginning, which resulted in us not having to waste time reorganizing and structuring our code and project later on. This allowed us instead to focus on the core implementation and follow the course learning objectives. ---
 
 ### Question 6
 
@@ -316,11 +318,18 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 > *We used a simple argparser, that worked in the following way: Python  my_script.py --lr 1e-3 --batch_size 25*
 >
 > Answer: --- I configured the experiment using a config.yaml file to specify key hyperparameters like learning rate, batch size, and epochs, ensuring reproducibility. However, training was computationally intensive, taking a long time and using significant memory. To optimize this, I implemented a sweep configuration with W&B, defining hyperparameter ranges for automated experimentation (e.g., learning rate, batch size, and epochs). The sweep was designed to find the best parameters through multiple runs but wasn't executed due to the excessive time it would require.
+
 To run the configs.yaml simply run:
-python src/mlops_project/model.py --config_path config.yaml
+python src/mlops_project/model.py --config-path configs/config.yaml
+
+To pass specific parameters to training run (if you include --config-path configs/config.yaml then it chooses those hyper parameters):
+python src/mlops_project/model.py --lr 0.002 --batch-size 16 --epochs 2
 
 For sweep:
-python src/mlops_project/model.py --config_path sweep.yaml
+wandb sweep configs/sweep.yaml   
+Then pass the sweep agent:
+wandb agent <sweep_id>
+
 ---
 
 ### Question 13

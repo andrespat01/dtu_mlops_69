@@ -2,13 +2,13 @@ import torch
 from torch import nn
 import pytorch_lightning as pl
 from pytorch_lightning import Trainer
-from src.mlops_project.data import tweets
+from data import tweets
 import typer
 import wandb
 from transformers import AutoModel
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from omegaconf import OmegaConf
-
+from pathlib import Path
 
 """
 Found this github project:
@@ -31,12 +31,6 @@ class Model(pl.LightningModule):
         for name, param in self.named_parameters():
             if "encoder.layer" in name:
                 param.requires_grad = False  # Freezing the layers
-
-        """
-                layer_index = int(name.split(".")[3])  # Extract the layer index
-                if layer_index < 12: # Freeze the first 12 layers
-                    param.requires_grad = False     
-        """
 
         # dropout layer
         self.dropout = nn.Dropout(0.1)
@@ -118,22 +112,38 @@ class Model(pl.LightningModule):
         )
 
 
-def train(config_path: str = "configs/config.yaml") -> None:
+def train(lr: float = None, batch_size: int = None, epochs: int = None, config_path: str = None) -> None:
     """Train the model."""
-    # Using the config.yaml (or sweep.yaml) file, to define the hyperparameters for the model training:
-    # hyperparameters:
+    # Using the config.yaml to define the hyperparameters for the model training:
+    # python src/mlops_project/model.py --config-path configs/config.yaml
+    #
+    # Also possible to define the hyperparameters directly:
+    # python src/mlops_project/model.py --lr 0.001 --batch-size 32 --epochs 10
+    #
+    # hyperparameters options:
     #   batch_size
     #   epochs
     #   Learning rate = lr
     
-    # Load the specified .yaml configuration file
-    config = OmegaConf.load(config_path)
+    # Check if the config_path is not None
+    if config_path != None:
+        # Check if the config_path exists
+        if Path(config_path).exists():
+            # Load the specified .yaml configuration file
+            config = OmegaConf.load(config_path)
+            
+            # Access the hyperparameters from the loaded config
+            lr = config.hyperparameters.lr
+            batch_size = config.hyperparameters.batch_size
+            epochs = config.hyperparameters.epochs
+            
+            print(f"Loading configuration from {config_path}")
     
-    # Access the hyperparameters from the loaded config
-    lr = config.hyperparameters.lr
-    batch_size = config.hyperparameters.batch_size
-    epochs = config.hyperparameters.epochs
-    
+    # Print the hyperparameters
+    print(f"Learning rate: {lr}")
+    print(f"Batch size: {batch_size}")
+    print(f"Epochs: {epochs}")
+            
     # Load the model
     bert = AutoModel.from_pretrained("bert-base-uncased", return_dict=False)
     model = Model(bert, lr)

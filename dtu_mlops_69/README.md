@@ -33,7 +33,7 @@ The directory structure of the project looks like this:
 │       └── index.md
 ├── models/                   # Trained models
 │   └── model.pth
-├── notebooks/                # Jupyter notebooks
+│
 ├── prediction_api/           # Source code
 │   ├── api/
 │   │   ├── main.py           # The function uploaded to cloud run
