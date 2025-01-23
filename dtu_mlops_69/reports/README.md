@@ -266,7 +266,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
---- question 9 fill here ---
+---Yes, we exclusively used GitHub to work on the project and share code. While we didn’t use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
 
 ### Question 10
 
