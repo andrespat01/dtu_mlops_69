@@ -21,3 +21,4 @@ streamlit==1.41.1
 pytest-cov==6.0.0
 evidently==0.5.1
 pep8==1.7.1
+dvc==3.59.0
