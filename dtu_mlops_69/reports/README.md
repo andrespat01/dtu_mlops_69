@@ -58,16 +58,16 @@ will check the repositories and the code to verify your answers.
     are using (M2+M6)
 * [x] Remember to comply with good coding practices (`pep8`) while doing the project (M7)
 * [x] Do a bit of code typing and remember to document essential parts of your code (M7)
-* [ ] Setup version control for your data or part of your data (M8)
+* [x] Setup version control for your data or part of your data (M8)
 * [x] Add command line interfaces and project commands to your code where it makes sense (M9)
 * [ ] Construct one or multiple docker files for your code (M10)
 * [ ] Build the docker files locally and make sure they work as intended (M10)
-* [ ] Write one or multiple configurations files for your experiments (M11)
-* [ ] Used Hydra to load the configurations and manage your hyperparameters (M11)
-* [ ] Use profiling to optimize your code (M12)
+* [x] Write one or multiple configurations files for your experiments (M11)
+* [x] Used Hydra to load the configurations and manage your hyperparameters (M11)
+* [x] Use profiling to optimize your code (M12)
 * [ ] Use logging to log important events in your code (M14)
 * [x] Use Weights & Biases to log training progress and other important metrics/artifacts in your code (M14)
-* [sat det op, men min computer exploderer hvis jeg kører det] Consider running a hyperparameter optimization sweep (M14)
+* [x] Consider running a hyperparameter optimization sweep (M14)
 * [x] Use PyTorch-lightning (if applicable) to reduce the amount of boilerplate in your code (M15)
 
 ### Week 2
@@ -118,7 +118,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 1 fill here ---
+--- 69 ---
 
 ### Question 2
 > **Enter the study number for each member in the group**
@@ -129,7 +129,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 2 fill here ---
+--- s194045 Niklas August Kjølbro ---
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
@@ -143,7 +143,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 3 fill here ---
+--- I tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
 
 ## Coding environment
 
@@ -292,9 +292,13 @@ will check the repositories and the code to verify your answers.
 > Example:
 > *We used a simple argparser, that worked in the following way: Python  my_script.py --lr 1e-3 --batch_size 25*
 >
-> Answer:
+> Answer: --- I configured the experiment using a config.yaml file to specify key hyperparameters like learning rate, batch size, and epochs, ensuring reproducibility. However, training was computationally intensive, taking a long time and using significant memory. To optimize this, I implemented a sweep configuration with W&B, defining hyperparameter ranges for automated experimentation (e.g., learning rate, batch size, and epochs). The sweep was designed to find the best parameters through multiple runs but wasn't executed due to the excessive time it would require.
+To run the configs.yaml simply run:
+python src/mlops_project/model.py --config_path config.yaml
 
---- question 12 fill here ---
+For sweep:
+python src/mlops_project/model.py --config_path sweep.yaml
+---
 
 ### Question 13
 
@@ -326,7 +330,24 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- question 14 fill here ---
+--- 
+[this figure](reports/figures/WANDB_config.png)
+The provided screenshot from W&B shows the metrics tracked during training: train_acc, train_loss, val_acc, val_loss, and epoch.
+* Train Accuracy (train_acc): Measures how well the model performs on the training data. It helps monitor overfitting or underfitting trends.
+* Train Loss (train_loss): Tracks the error the model makes on the training set. A decreasing loss indicates learning progress.
+* Validation Accuracy (val_acc): Measures performance on unseen data. In this case, it is increasing, indicating the model is improving generalization despite fluctuations in validation loss.
+* Validation Loss (val_loss): Tracks error on the validation set. Here, it is increasing, which may signal overfitting or an issue with the training process.
+Epoch: the number of training iterations, giving context to the trends.
+The early stopping mechanism stopped training at epoch 3 (out of a maximum of 5), which prevented unnecessary computation as val_acc continued increasing while val_loss began to increase. This suggests the model is still learning useful patterns but may also be starting to overfit.
+
+Additional confusion matrix was made to evaluate the classification performance on disaster tweets:
+[this figure](reports/figures/confusion_matrix.png)
+
+The confusion matrix reveals an imbalance in the model's performance. While it performs well on Class 0 (real-disaster tweets), with low misclassification (24 errors), it struggles with Class 1 (non-disaster tweets), misclassifying a significant portion (230 errors).
+Suggests:
+1) Class imbalance in the dataset, which biases the model toward the majority class (non-disaster tweets).
+2) The need for additional techniques to improve performance. However, improving the model was not prioritized in this course, as the main focus was not on maximizing model accuracy but on understanding the workflow, experimentation, and operational processes of machine learning development.
+ ---
 
 ### Question 15
 

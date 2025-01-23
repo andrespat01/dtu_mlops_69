@@ -7,6 +7,7 @@ import typer
 from transformers import AutoTokenizer
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset
+import subprocess
 
 
 class MyDataset(Dataset):
@@ -93,11 +94,12 @@ def download_dataset(bucket_name: str = "d_tweets", blob_name: str = "tweets.csv
 
     # Local file path to save the downloaded file
     destination_file = raw_data_dir / blob_name
-
+    
     # Download the blob to the destination
     blob.download_to_filename(destination_file)
     print(
         f"Downloaded {blob_name} from bucket {bucket_name} to {destination_file}")
+
 
 
 def preprocess(raw_data_path: str = "data/raw/tweets.csv", output_folder: str = "data/processed") -> None:
@@ -111,7 +113,7 @@ def preprocess(raw_data_path: str = "data/raw/tweets.csv", output_folder: str = 
     dataset = MyDataset(raw_data_path)
     dataset.preprocess(output_folder)
 
-
+    
 def tweets() -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
     """Return train and test datasets for tweets."""
     input_ids = torch.load("data/processed/input_ids.pt")

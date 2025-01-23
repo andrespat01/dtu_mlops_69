@@ -51,8 +51,8 @@ def visualize(model_checkpoint: str = "models/model.pth", figure_name: str = "co
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.title('Confusion Matrix')
-    plt.show()
     plt.savefig(f"reports/figures/{figure_name}")
+    plt.show()
 
 
 if __name__ == "__main__":
