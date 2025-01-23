@@ -1,0 +1,29 @@
+name: Data Change Trigger
+
+on:
+  push:
+    paths:
+      - 'data/raw/**'  # Monitor changes in the data/raw directory
+      - '.github/workflows/data_change.yaml'  # Monitor updates to this workflow
+
+jobs:
+  process-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U pip setuptools wheel
+          pip install -r requirements.txt
+
+      - name: Run data preprocessing
+        run: |
+          python src/mlops_project/data.py preprocess
