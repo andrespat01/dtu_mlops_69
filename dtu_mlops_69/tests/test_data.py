@@ -1,5 +1,5 @@
 from tests import _PATH_DATA
-from src.mlops_project.data import tweets
+from src.mlops_project.data import tweets, MyDataset, preprocess
 from torch.utils.data import Dataset
 import torch
 import os.path
@@ -23,3 +23,21 @@ def test_data():
             assert input_ids.shape == (61,)  # should be 60 after padding
             assert attention_mask.shape == (61,)  # should be 60 after padding
             assert targets in [0, 1]  # Label should be either 0 or 1
+
+# Test data preprocessing (check if the correct files are saved)
+def test_preprocess():
+    raw_data_path = "data/raw/tweets.csv"
+    output_folder = "data/processed"
+
+    # Ensure the raw data exists
+    assert os.path.exists(raw_data_path), f"Raw data file {raw_data_path} not found"
+    
+    # Preprocess the data
+    preprocess(raw_data_path, output_folder)
+    dataset = MyDataset(raw_data_path)
+    dataset.preprocess(output_folder)
+    
+    # Check if the processed files are saved
+    assert os.path.exists(os.path.join(output_folder, "input_ids.pt")), "input_ids file not saved"
+    assert os.path.exists(os.path.join(output_folder, "attention_mask.pt")), "attention_mask file not saved"
+    assert os.path.exists(os.path.join(output_folder, "targets.pt")), "targets file not saved"

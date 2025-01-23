@@ -2,7 +2,7 @@ import torch
 from torch import nn
 import pytorch_lightning as pl
 from pytorch_lightning import Trainer
-from data import tweets
+from src.mlops_project.data import tweets
 import typer
 import wandb
 from transformers import AutoModel

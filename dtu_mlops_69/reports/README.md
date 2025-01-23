@@ -233,7 +233,9 @@ Typing was used throughout all functions in the project to improve code clarity 
 >
 > Answer:
 
---- question 7 fill here ---
+--- Unit tests were created for the data, model, and later the API. The data test ensures the dataset is correct, with the right number of samples (9096 training, 2274 testing), and validates input data shapes (input_ids and attention_mask of size 61) and target labels (1). The model test checks the forward pass output shape (2) and ensures the output is a tensor. It also verifies that the loss is correctly computed during the training step.The API test checks that the response from the deployed API contains the correct status code, valid JSON, and a prediction value of 0 or 1.
+Unit tests
+ ---
 
 ### Question 8
 
@@ -248,7 +250,8 @@ Typing was used throughout all functions in the project to improve code clarity 
 >
 > Answer:
 
---- question 8 fill here ---
+--- Our code coverage was in total 97% meaning that 97% of our code modules (data.py, model.py & api.py) is covered by tests. I would not trust this to be error free. While this is a high percentage, it doesn't guarantee that the code is entirely error-free because code coverage measures how much of the code is executed by tests, but it doesn't assess the quality or thoroughness of those tests.
+These are many reasons not to trust code coverage, for reason is that the tests are dedefined by us but there can easily be scenarios or edge cases that was not accounted for in the tests, which can cause issues. Complex functions are also difficult to tests probably or complex interactions.---
 
 ### Question 9
 
