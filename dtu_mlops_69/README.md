@@ -27,17 +27,23 @@ The directory structure of the project looks like this:
 │   ├── api/
 │   │   ├── main.py           # The function uploaded to cloud run
 │   │   └── requirements.txt  # The requirements to run the function
+│   ├── prediction_database.csv # Database of the calls to API: timestamp, location, text and prediction
 │   └── read_me.txt           # Explains how to use the api
 │
 ├── reports/                  # Reports
 │   └── figures/
+│   │    └── Confusion_matrix.png
+│   ├── README.md
+│   └── report.md
 ├── src/                      # Source code
-│   ├── mlops_project/
-│   │   ├── __init__.py
-│   │   ├── api.py
-│   │   ├── data.py
-│   │   ├── models.py
-│   │   └── visualize.py
+│   └── mlops_project/
+│       ├── __init__.py
+│       ├── api.py            # API call
+│       ├── data_drift.py     # Data drifting
+│       ├── data.py           # Receive data from cloud and preprocess
+│       ├── frontend.py       # Frontend of the program
+│       ├── models.py         # Train model using Pytorch Lightning
+│       └── visualize.py      # Generate confusion matrix
 └── tests/                    # Tests
 │   ├── __init__.py
 │   ├── test_api.py
@@ -47,6 +53,7 @@ The directory structure of the project looks like this:
 ├── .pre-commit-config.yaml
 ├── LICENSE
 ├── pyproject.toml            # Python project file
+├── coverage_report.txt       # Coverage report
 ├── README.md                 # Project README
 ├── requirements.txt          # Project requirements
 ├── requirements_dev.txt      # Development requirements

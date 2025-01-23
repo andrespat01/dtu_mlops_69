@@ -1,6 +1,6 @@
-program: src/mlobs_project/train.py
+program: src/mlobs_project/model.py
 name: sweepdemo
-project: corrupt_mnist  # change this
+project: DTU_MLOPS_69
 entity: niklas-kjolbro-danmarks-tekniske-universitet-dtu  # change this
 metric:
     goal: minimize
