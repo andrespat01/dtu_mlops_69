@@ -500,7 +500,7 @@ These methods combined helped us address bugs and maintain a robust application 
 > Answer:
 
 --- 
-We used the bucket service for two purposes. One for storing our data, which can be seen [here](/figures/bucket_data.png), and the other for storing our model artifacts, which can be seen [here](/figures/bucket_model.png). The bucket service allowed us to store and access data and model artifacts in a scalable and secure manner.---
+We used the bucket service for two purposes. One for storing our data, which can be seen [here](/figures/bucket_data.png), and the other for storing our model artifacts, which can be seen [here](dtu_mlops_69/reports/figures/bucket_model.png). The bucket service allowed us to store and access data and model artifacts in a scalable and secure manner.---
 ---
 
 ### Question 20
