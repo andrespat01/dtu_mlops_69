@@ -11,7 +11,11 @@ from sklearn.metrics import accuracy_score
 
 
 def visualize(model_checkpoint: str = "models/model.pth", figure_name: str = "confusion_matrix.png") -> None:
-    """Visualize model predictions."""
+    """Visualize model predictions with a confusion matrix.
+    
+    Args: model_checkpoint (str): Path to the model checkpoint. 
+            figure_name (str): Name of the figure to save.
+    """
     bert = AutoModel.from_pretrained('bert-base-uncased', return_dict=False)
     model = Model(bert, lr=0.001)
 
