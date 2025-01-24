@@ -709,10 +709,12 @@ These metrics confirm that the API is robust and capable of handling moderate tr
 >
 > Answer:
 
---- We did not manage to implement full monitoring ourselves, aside from basic data drift detection that was not fully tested.
+--- 
+We did not manage to implement full monitoring ourselves, aside from basic data drift detection that was not fully tested.
 However, we are tracking several key API performance metrics provided by Cloud Run, including request count, latencies, container resource utilization (CPU, memory), and container instance counts. 
 These metrics help us identify potential bottlenecks, performance degradation, and resource overuse, which informs us where to improve both the model and infrastructure to achieve long-term stability and scalability for our application. 
 This is why we would like to implement proper monitoring of our API ourselves as it would help us track performance, detect issues early, and ensure the model and infrastructure remain reliable and scalable over time.
+
  ---
 
 ## Overall discussion of project
