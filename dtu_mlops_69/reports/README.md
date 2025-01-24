@@ -562,7 +562,31 @@ In the following picture the build history of the images that have been built in
 >
 > Answer:
 
---- question 23 fill here ---
+--- 
+### API Implementation for the Model
+
+Yes, we successfully wrote an API for our model using **FastAPI** to enable easy interaction and deployment of the machine learning model.
+
+#### **Backend API Design**
+- The API includes endpoints for predicting the classification of disaster tweets and serves as an interface between the frontend and the deployed model.
+- On startup, the model is loaded from **Google Cloud Storage** (GCS). The model, a fine-tuned BERT-based architecture, is retrieved as a `.pth` file from a specified GCS bucket. This ensures the latest model version is always available.
+
+#### **Special Features**
+1. **Text Preprocessing**:  
+   Text inputs are cleaned to remove unwanted elements such as URLs, hashtags, and special characters using a `clean_text` function.
+   
+2. **Inference Pipeline**:  
+   The API processes input data by tokenizing it with the `bert-base-uncased` tokenizer. It then performs inference using the loaded PyTorch model and outputs a prediction.
+
+3. **Dynamic Inputs**:  
+   The `/predict/` endpoint allows users to provide text inputs and, optionally, location data. These are seamlessly combined and processed for classification.
+
+4. **Logging and Deployment**:  
+   The API was designed with robust logging and deployed as a containerized service on **Google Cloud Artifact Registry**, ensuring high scalability and accessibility.
+
+This modular approach makes the API efficient, reusable, and easy to maintain.
+
+---
 
 ### Question 24
 
@@ -578,7 +602,17 @@ In the following picture the build history of the images that have been built in
 >
 > Answer:
 
---- question 24 fill here ---
+---
+### Deployment of the API
+
+Yes, we successfully deployed our API both locally and in the cloud.
+
+#### **Local Deployment**
+- Initially, the API was deployed locally using the command:
+  ```bash
+  uvicorn backend:app --reload
+
+---
 
 ### Question 25
 
