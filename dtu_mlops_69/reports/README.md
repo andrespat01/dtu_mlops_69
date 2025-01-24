@@ -426,8 +426,10 @@ Finally to tag and push the Docker images to Google Cloud Artifact Registry, the
 - **Google cloud run deployment**: `gcloud run deploy frontend \ --image=europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/frontend:latest \ --region=europe-west3 \ --platform=managed \` & `gcloud run deploy backend \ --image=europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/backend:latest \ --region=europe-west3 \ --platform=managed` <br>
 
 Link to Dockerfiles:
-[Link to the Backend Dockerfile](../frontend-backend/backend.dockerfile) <br>
-[Link to the Frontend Dockerfile](../frontend-backend/frontend.dockerfile)
+
+[Link to the Backend Dockerfile](/../frontend-backend/backend.dockerfile) 
+
+[Link to the Frontend Dockerfile](/../frontend-backend/frontend.dockerfile)
 ---
 
 ### Question 16
@@ -443,7 +445,20 @@ Link to Dockerfiles:
 >
 > Answer:
 
---- question 16 fill here ---
+--- 
+Debugging was an essential part of our project workflow, and we employed different techniques depending on the stage of development:
+
+1. **Debugging During Development**  
+   While writing and refining our code, we extensively used breakpoints in our development environment to verify the execution flow and inspect variable states. This step-by-step approach helped us isolate issues at specific points in the code and ensured each component behaved as expected.
+
+2. **Debugging During Containerization and Deployment**  
+   When containerizing the application and deploying it to Google Cloud, most debugging relied on analyzing logs. By observing the logging outputs, we could trace issues back to their origin and identify misconfigurations or runtime errors within the containerized environments.
+
+3. **Profiling the Code**  
+   While we did not perform extensive profiling, we ensured the main components of the system were efficient by monitoring performance metrics during testing. Logging and observing runtime behaviors served as a lightweight profiling approach to verify functionality.
+
+These methods combined helped us address bugs and maintain a robust application pipeline.
+---
 
 ## Working in the cloud
 
