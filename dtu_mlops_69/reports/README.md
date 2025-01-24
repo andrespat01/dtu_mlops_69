@@ -131,6 +131,7 @@ will check the repositories and the code to verify your answers.
 
 --- s194045 Niklas August Kjølbro ---
 --- s185034 Andreas Patscheider ---
+--- s200621 Mads Rumle Nordstrøm ---
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
