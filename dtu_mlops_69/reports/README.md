@@ -93,7 +93,7 @@ will check the repositories and the code to verify your answers.
 
 ### Week 3
 
-* [ ] Check how robust your model is towards data drifting (M27)
+* [x] Check how robust your model is towards data drifting (M27)
 * [ ] Deploy to the cloud a drift detection API (M27)
 * [ ] Instrument your API with a couple of system metrics (M28)
 * [ ] Setup cloud monitoring of your instrumented application (M28)
@@ -679,7 +679,11 @@ Yes, we successfully deployed our API both locally and in the cloud.
 >
 > Answer:
 
---- question 26 fill here ---
+--- We did not manage to implement full monitoring ourselves, aside from basic data drift detection that was not fully tested.
+However, we are tracking several key API performance metrics provided by Cloud Run, including request count, latencies, container resource utilization (CPU, memory), and container instance counts. 
+These metrics help us identify potential bottlenecks, performance degradation, and resource overuse, which informs us where to improve both the model and infrastructure to achieve long-term stability and scalability for our application. 
+This is why we would like to implement proper monitoring of our API ourselves as it would help us track performance, detect issues early, and ensure the model and infrastructure remain reliable and scalable over time.
+ ---
 
 ## Overall discussion of project
 
