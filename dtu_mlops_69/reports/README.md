@@ -457,7 +457,7 @@ Debugging was an essential part of our project workflow, and we employed differe
    When containerizing the application and deploying it to Google Cloud, most debugging relied on analyzing logs. By observing the logging outputs, we could trace issues back to their origin and identify misconfigurations or runtime errors within the containerized environments.
 
 3. **Profiling the Code**  
-   While we did not perform extensive profiling, we ensured the main components of the system were efficient by monitoring performance metrics during testing. Logging and observing runtime behaviors served as a lightweight profiling approach to verify functionality.
+   While we did not perform extensive profiling, we ensured the main components of the system were efficient by monitoring performance metrics during testing. Logging and observing runtime behaviors served as a lightweight profiling approach to verify functionality. <br>
 These methods combined helped us address bugs and maintain a robust application pipeline.
 
 ---
