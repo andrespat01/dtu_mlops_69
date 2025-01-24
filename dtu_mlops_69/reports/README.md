@@ -477,7 +477,10 @@ These methods combined helped us address bugs and maintain a robust application 
 >
 > Answer:
 
---- question 17 fill here ---
+--- IAM & admin was used to manage access and permissions for the various services. Controlling who has access to our resources across the project. Service accounts were created for authentication and authorization.
+Secure Manager was used to store sensitive credentials, such as the Kaggle JSON file for automatically downloading datasets from Kaggle and the WANDB API key for tracking experiments and managing hyperparameter tuning.
+Cloud Storage two Cloud Storage buckets were created: one to store the raw tweets data and another to store the trained model. This setup ensures that new users with credentials to the Google Cloud project can easily run the project. If they choose to retrain the model, the data will be automatically fetched from the storage. Alternatively, they can use the stored trained model to make predictions via the API.
+Cloud Run was used to deploy the disaster tweet prediction API for our trained model. This serverless service enabled us to host the API efficiently, with automatic scaling to handle incoming requests. ---
 
 ### Question 18
 
@@ -492,7 +495,12 @@ These methods combined helped us address bugs and maintain a robust application 
 >
 > Answer:
 
---- question 18 fill here ---
+--- We used the Compute Engine's virtual machine (VM) service to set up an instance for model training. The instance was named ml69, with a machine type of n1-standard-1, which offers a balanced setup for general-purpose workloads. The VM was located in the europe-west1-b zone to be closer to us.  Since the instance did not include GPUs, the training process was slower than expected.  accessed the instance remotely through the terminal to manage the environment and execute tasks.
+To create a similar VM using the gcloud command, you can run the following:
+gcloud compute instances create vm-name \
+  --zone=europe-west1-b \
+  --machine-type=n1-standard-1
+Once the VM was set up, we cloned our GitHub repository into the virtual machine to initiate model training. ---
 
 ### Question 19
 
@@ -545,7 +553,22 @@ In the following picture the build history of the images that have been built in
 >
 > Answer:
 
---- question 22 fill here ---
+--- We managed to train our model on the virtual machine using Compute Engine. A virtual machine instance was created on Compute Engine, and we accessed it through our terminal in VSCode with the following command:
+
+gcloud compute instances start ml69 --zone=europe-west1-b 
+
+Afterwards, we cloned our GitHub project into the virtual environment. With the buckets already set up, it was easy to retrieve the data and start training the model. Once the training was completed, the model was saved in our Cloud Storage for future use.
+
+Although we successfully trained the model, it was only used as a proof of concept. This was due to the Compute Engine being significantly slower for training compared to training locally, which made it less practical.
+
+Additionally, Vertex AI was also utilized. A config_cpu.yaml file is located in the configs folder. To run it, simply use the following command:
+
+gcloud ml69 custom-jobs create \
+    --region=europe-west1 \
+    --display-name=test-run \
+    --config=configs/config_gpu.yaml \
+    --command 'python src/mlops_project/model.py' \
+    --args '["--epochs", "3"]'      ---
 
 ## Deployment
 
