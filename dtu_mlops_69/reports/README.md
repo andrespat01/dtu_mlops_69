@@ -796,9 +796,12 @@ This additional implementation enhances usability by providing a seamless way fo
 >
 > Answer:
 
+--- 
+The primary struggle of the project was focusing on cloud infrastructure over traditional model performance. While the static dataset limited our ability to benefit from CI/CD workflows with continuous data updates, we implemented a robust infrastructure to demonstrate scalability and real-world applicability for dynamic environments. This included setting up Google Cloud Storage (GCS) for data storage, deploying the model with Cloud Run, and integrating FastAPI for serving predictions.
+Navigating the cloud infrastructure—such as training on GCP Compute Engin,e managing data pipelines, and saving artifacts to the correct buckets equired substantial effort. Ensuring consistent permissions, paths, and integrations between services like GCS, Artifact Registry, and Cloud Run was particularly time-consuming.
+Additionally, setting up workflows for distributed training and monitoring highlighted the challenges of creating scalable solutions while maintaining simplicity. Despite these hurdles, the focus on infrastructure provided valuable insights into operationalizing machine learning workflows, which are essential for real-world applications where data evolves continuously. This foundational work positions the project for future enhancements and scalability.
 
-
---- question 30 fill here ---
+---
 
 ### Question 31
 
