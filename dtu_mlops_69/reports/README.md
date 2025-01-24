@@ -611,6 +611,31 @@ Yes, we successfully deployed our API both locally and in the cloud.
 - Initially, the API was deployed locally using the command:
   ```bash
   uvicorn backend:app --reload
+    ```
+- To test the API locally and interact with it, we sent POST requests to the local server using or **curl**:
+    ```bash
+    curl -X POST "http://127.0.0.1:8000/predict//" \
+-H "Content-Type: application/json" \
+-d '{
+      "input_data": ["The recent fires in California have been devastating"],
+      "location": "California"
+    }'
+    ```
+- The API was tested using various input data to ensure correct functionality and response.
+
+#### **Cloud Deployment**
+- After successful local testing, the API was containerized using Docker to ensure portability and consistent runtime environments
+- The containerized API image was pushed to Google Cloud Artifact Registry and deployed on Google Cloud.
+- To invoke the cloud-deployed API, users replace the local URL (127.0.0.1) with the public endpoint provided by Google Cloud:
+    ```bash
+    curl -X POST "https://backend-912555186187.europe-west3.run.app/predict/" \
+-H "Content-Type: application/json" \
+-d '{
+      "input_data": ["The recent fires in California have been devastating"],
+      "location": "California"
+    }'
+    ```
+- The cloud-deployed API was tested using the same input data to ensure consistent behavior and response.
 
 ---
 
