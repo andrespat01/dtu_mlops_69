@@ -300,9 +300,6 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 
 --- Our continuous integration (CI) setup uses GitHub Actions to automate testing and linting processes in our project. The CI pipeline runs unit tests using pytest to validate the functionality and correctness of our code and uses flake8 for linting to ensure adherence to coding standards and avoid common errors. We have configured the workflow to test the code on multiple operating systems, including Ubuntu, Windows, and macOS, and it also runs on multiple Python versions, specifically 3.11 and 3.12. This ensures compatibility across different environments and platforms. The CI pipeline is triggered automatically on every push or pull request to the main branch, allowing us to maintain a high standard of code quality and functionality as changes are made to the repository.
 
-
---- question 11 fill here ---
-
 ## Running code and tracking experiments
 
 > In the following section we are interested in learning more about the experimental setup for running your code and
