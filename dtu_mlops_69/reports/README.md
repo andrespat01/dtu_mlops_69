@@ -88,7 +88,7 @@ will check the repositories and the code to verify your answers.
 * [x] Deploy your model in GCP using either Functions or Run as the backend (M23)
 * [x] Write API tests for your application and setup continues integration for these (M24)
 * [x] Load test your application (M24)
-* [] Create a more specialized ML-deployment API using either ONNX or BentoML, or both (M25)
+* [ ] Create a more specialized ML-deployment API using either ONNX or BentoML, or both (M25)
 * [x] Create a frontend for your API (M26)
 
 ### Week 3
@@ -104,7 +104,7 @@ will check the repositories and the code to verify your answers.
 
 ### Extra
 
-* [ ] Write some documentation for your application (M32)
+* [x] Write some documentation for your application (M32)
 * [ ] Publish the documentation to GitHub Pages (M32)
 * [ ] Revisit your initial project description. Did the project turn out as you wanted?
 * [ ] Create an architectural diagram over your MLOps pipeline
@@ -129,7 +129,13 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
+<<<<<<< HEAD
 --- s194045, s185034, s200621 ---
+=======
+--- s194045 Niklas August Kjølbro ---
+--- s185034 Andreas Patscheider ---
+--- s240398 Sofus Laub Erdal ---
+>>>>>>> 430391c7aed7f215eeb2d6d3d1892f559637e9d3
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
@@ -298,7 +304,10 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
---- We have 4 different GitHub actions that are triggered on different occasions. The first is a code checker that checks the format of the code using ruff and then formats is using ruff. The second action is monitoring the raw data for changes. If the data changes the actions runs preprocessing on the raw data. The third action triggers on a model update either in the models/ directory or in the src/dtumlops_project/model.py file. The model is then retrained and the result is uploaded. The fourth action triggers on any push to the main branch. The action lints the code with flake8 and runs the unit test and makes a coverage report. ---
+--- Our continuous integration (CI) setup uses GitHub Actions to automate testing and linting processes in our project. The CI pipeline runs unit tests using pytest to validate the functionality and correctness of our code and uses flake8 for linting to ensure adherence to coding standards and avoid common errors. We have configured the workflow to test the code on multiple operating systems, including Ubuntu, Windows, and macOS, and it also runs on multiple Python versions, specifically 3.11 and 3.12. This ensures compatibility across different environments and platforms. The CI pipeline is triggered automatically on every push or pull request to the main branch, allowing us to maintain a high standard of code quality and functionality as changes are made to the repository.
+
+
+--- question 11 fill here ---
 
 ## Running code and tracking experiments
 
@@ -748,6 +757,8 @@ This is why we would like to implement proper monitoring of our API ourselves as
 > *The biggest challenges in the project was using ... tool to do ... . The reason for this was ...*
 >
 > Answer:
+
+
 
 --- question 30 fill here ---
 

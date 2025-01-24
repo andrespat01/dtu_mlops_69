@@ -22,6 +22,10 @@ class Model(pl.LightningModule):
     """Lightning module"""
 
     def __init__(self, bert: AutoModel, lr: int) -> None:
+        """Initialize the model.
+        
+        args: bert, lr
+        """
         super(Model, self).__init__()
 
         self.bert = bert
@@ -48,7 +52,11 @@ class Model(pl.LightningModule):
         self.softmax = nn.LogSoftmax(dim=1)
 
     def forward(self, sent_id: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
-        """Forward pass."""
+        """Forward pass.
+        
+        args: sent_id, mask
+        returns: torch.Tensor
+        """
 
         # pass the inputs to the model
         _, cls_hs = self.bert(sent_id, attention_mask=mask)
@@ -66,6 +74,10 @@ class Model(pl.LightningModule):
         return x
 
     def training_step(self, batch, batch_idx):
+        """Training step.
+        
+        args: batch, batch_idx
+        """
         sent_id, mask, targets = (
             batch  # Unpack the batch into input_ids, attention_mask, and target
         )
@@ -84,6 +96,10 @@ class Model(pl.LightningModule):
         return loss
 
     def validation_step(self, batch) -> None:
+        """Validation step.
+        
+        args: batch
+        """
         sent_id, mask, targets = (
             batch  # Unpack the batch into input_ids, attention_mask, and target
         )
@@ -94,18 +110,31 @@ class Model(pl.LightningModule):
         self.log("val_loss", loss, on_epoch=True)  # Log the validation loss
         self.log("val_acc", acc, on_epoch=True)
 
-    def configure_optimizers(self):
-        """Configure optimizer."""
+    def configure_optimizers(self) -> torch.optim.Optimizer:
+        """Configure optimizer.
+        
+        returns: torch.optim.Optimizer
+        """
         optimizer = torch.optim.Adam(self.parameters(), lr=self.lr)
         return optimizer
 
     def train_dataloader(self, batch_size: int) -> torch.utils.data.DataLoader:
+        """ Training dataloader
+        
+        args: batch_size: int
+        returns: torch.utils.data.DataLoader
+        """
         train_set, _ = tweets()  # Ensure this is returning a valid dataset
         return torch.utils.data.DataLoader(
             train_set, batch_size=batch_size, num_workers=4, pin_memory=True
         )
 
     def val_dataloader(self, batch_size: int) -> torch.utils.data.DataLoader:
+        """ Validation dataloader 
+        
+        args: batch_size: int
+        returns: torch.utils.data.DataLoader
+        """
         _, val_set = tweets()  # Assuming corrupt_mnist returns a validation dataset
         return torch.utils.data.DataLoader(
             val_set, batch_size=batch_size, num_workers=4, pin_memory=True
