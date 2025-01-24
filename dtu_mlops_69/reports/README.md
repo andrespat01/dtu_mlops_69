@@ -603,7 +603,7 @@ This modular approach makes the API efficient, reusable, and easy to maintain.
 > Answer:
 
 ---
-### Deployment of the API
+#### Deployment of the API
 
 Yes, we successfully deployed our API both locally and in the cloud.
 
@@ -614,12 +614,7 @@ Yes, we successfully deployed our API both locally and in the cloud.
     ```
 - To test the API locally and interact with it, we sent POST requests to the local server using or **curl**:
     ```bash
-    curl -X POST "http://127.0.0.1:8000/predict//" \
--H "Content-Type: application/json" \
--d '{
-      "input_data": ["The recent fires in California have been devastating"],
-      "location": "California"
-    }'
+    curl -X POST "http://127.0.0.1:8000/predict//" \ -H "Content-Type: application/json" \ -d '{"input_data": ["The recent fires in California have been devastating"],"location": "California"}'
     ```
 - The API was tested using various input data to ensure correct functionality and response.
 
