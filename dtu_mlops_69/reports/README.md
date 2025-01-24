@@ -705,7 +705,28 @@ This is why we would like to implement proper monitoring of our API ourselves as
 >
 > Answer:
 
---- question 27 fill here ---
+--- 
+### Cloud Credits Usage and Reflections on Working in the Cloud
+
+#### **Credits Used**
+During the project, we utilized approximately **$0.33** in cloud credits, as shown in the provided cost summary. The costs were distributed across multiple services, with the following breakdown:
+- **Cloud Run Functions**: **$0.18** (most expensive service)
+- **Compute Engine**: **$0.13**
+- **Cloud Run**: **$0.02**
+- Other services like Networking, Cloud Storage, Artifact Registry, and Secret Manager incurred negligible or no costs.
+
+#### **Most Expensive Service**
+The most expensive service was **Cloud Run Functions**, accounting for **$0.18**, which aligns with its role in hosting and running our backend API and associated functionalities.
+
+#### **Reflections on Working in the Cloud**
+Working in the cloud offered several advantages:
+1. **Scalability**: Services like **Google Cloud Run** allowed for easy scaling, ensuring reliable performance during load testing and concurrent API usage.
+2. **Ease of Deployment**: The seamless integration of backend and frontend components through Google Cloud services reduced development and deployment complexities.
+3. **Cost-Effectiveness**: The overall cost of running the project remained very low, making it accessible for development and testing purposes.
+
+Overall, the experience was positive, and the cloud environment provided the flexibility and tools required to efficiently implement and deploy the project.
+
+---
 
 ### Question 28
 
