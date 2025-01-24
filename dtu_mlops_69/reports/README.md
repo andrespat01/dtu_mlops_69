@@ -364,7 +364,7 @@ wandb agent <sweep_id>
 > Answer:
 
 --- 
-[this figure](reports/figures/WANDB_config.png)
+[this figure](/figures/WANDB_config.png)
 The provided screenshot from W&B shows the metrics tracked during training: train_acc, train_loss, val_acc, val_loss, and epoch.
 * Train Accuracy (train_acc): Measures how well the model performs on the training data. It helps monitor overfitting or underfitting trends.
 * Train Loss (train_loss): Tracks the error the model makes on the training set. A decreasing loss indicates learning progress.
@@ -374,7 +374,7 @@ Epoch: the number of training iterations, giving context to the trends.
 The early stopping mechanism stopped training at epoch 3 (out of a maximum of 5), which prevented unnecessary computation as val_acc continued increasing while val_loss began to increase. This suggests the model is still learning useful patterns but may also be starting to overfit.
 
 Additional confusion matrix was made to evaluate the classification performance on disaster tweets:
-[this figure](reports/figures/confusion_matrix.png)
+[this figure](/figures/confusion_matrix.png)
 
 The confusion matrix reveals an imbalance in the model's performance. While it performs well on Class 0 (real-disaster tweets), with low misclassification (24 errors), it struggles with Class 1 (non-disaster tweets), misclassifying a significant portion (230 errors).
 Suggests:
@@ -499,7 +499,9 @@ These methods combined helped us address bugs and maintain a robust application 
 >
 > Answer:
 
---- question 19 fill here ---
+--- 
+We used the bucket service for two purposes. One for storing our data, which can be seen [here](/figures/bucket_data.png), and the other for storing our model artifacts, which can be seen [here](/figures/bucket_model.png). The bucket service allowed us to store and access data and model artifacts in a scalable and secure manner.---
+---
 
 ### Question 20
 
