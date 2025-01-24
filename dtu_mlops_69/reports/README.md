@@ -733,7 +733,7 @@ We implemented a simple yet effective frontend using **Streamlit**, which allows
    - The interface ensures validation, preventing empty or invalid submissions.
 
 2. **Backend Integration**:
-   - The frontend dynamically retrieves the URL of the deployed backend service hosted on **Google Cloud Run** using the **Google Cloud Run Python Client**.
+   - The frontend dynamically retrieves the URL of the deployed backend service hosted on **Google Cloud Run**.
    - The user input is sent to the `/predict/` endpoint of the backend API, which returns a classification result.
 
 3. **Prediction Results**:
