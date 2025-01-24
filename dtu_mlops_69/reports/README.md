@@ -692,9 +692,9 @@ From the load test results:
 - **Average Response Time**: The average response time of the API was approximately **60 ms**, demonstrating consistent performance under load.
 - **99th Percentile Response Time**: The 99th percentile response time was **160 ms**, indicating that even under heavy load, the API maintained acceptable latency for the vast majority of requests.
 - **Requests Per Second (RPS)**: The API handled an average of **4 requests per second**, showcasing its ability to process concurrent traffic effectively.
-
 These metrics confirm that the API is robust and capable of handling moderate traffic loads efficiently. However, further tuning could improve performance for higher request volumes.
- ---
+
+---
 
 ### Question 26
 
