@@ -395,7 +395,40 @@ Suggests:
 >
 > Answer:
 
---- question 15 fill here ---
+--- 
+In our MLOps project, Docker played a critical role in ensuring the seamless deployment of both the backend API and the frontend application. Here’s how Docker was utilized: <br>
+
+#### Backend API:
+1. **Containerizing the Backend API**  
+   The backend API was developed to interact with a machine learning model deployed on Google Cloud. Docker was used to package this API along with its dependencies into a container, ensuring a consistent runtime environment across all platforms.  
+2. **Pushing the Backend Docker Image**  
+   After containerization, the backend Docker image was pushed to Google Cloud Artifact Registry. This allowed it to be hosted and integrated seamlessly into the overall deployment pipeline.  
+
+#### Frontend Application:
+1. **Containerizing the Frontend**  
+   The frontend application, designed to connect to the deployed backend API, was also packaged into a Docker container. This guaranteed that all dependencies, libraries, and configurations were included for consistent execution.  
+2. **Pushing the Frontend Docker Image**  
+   Similar to the backend, the frontend Docker image was pushed to Google Cloud Artifact Registry. This made it easily accessible for hosting and deployment.  
+
+Thus the hosting of both our backend API and frontend application was made possible through Docker containerization. This ensured that the applications could be deployed and run consistently across different environments. <br>
+
+To build the Docker images, the following commands were used:
+- **Backend API**: `docker build --platform linux/amd64 -t backend:latest -f backend.dockerfile .`
+- **Frontend Application**: `docker build --platform linux/amd64 -t frontend:latest -f frontend.dockerfile .`
+
+To run the Docker images, the following commands were used:
+- **Backend API**: `docker run --platform linux/amd64 --rm -p 8080:8080 -e PORT=8080 backend:latest`
+- **Frontend Application**: `docker run --platform linux/amd64 --rm -p 8001:8001 -e "PORT=8001" frontend `
+
+Finally to tag and push the Docker images to Google Cloud Artifact Registry, the following commands were used:
+- **Tagging the Docker Image**: `docker tag frontend:latest \europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/frontend:latest` & `docker tag backend:latest \europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/backend:latest`
+- **Pushing the Docker Image**: `docker push europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/frontend:latest` & `docker push europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/backend:latest`
+- **Google cloud run deployment**: `gcloud run deploy frontend \ --image=europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/frontend:latest \ --region=europe-west3 \ --platform=managed \` & `gcloud run deploy backend \ --image=europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/backend:latest \ --region=europe-west3 \ --platform=managed` <br>
+
+Link to Dockerfiles:
+[Link to the Backend Dockerfile](frontend-backend/backend.dockerfile)
+[Link to the Frontend Dockerfile](frontend-backend/frontend.dockerfile)
+---
 
 ### Question 16
 
