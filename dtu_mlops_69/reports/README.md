@@ -84,12 +84,12 @@ will check the repositories and the code to verify your answers.
 * [x - har lavet bucket men ikke version control] Create a data storage in GCP Bucket for your data and link this with your data version control setup (M21)
 * [ ] Create a trigger workflow for automatically building your docker images (M21)
 * [x] Get your model training in GCP using either the Engine or Vertex AI (M21)
-* [ ] Create a FastAPI application that can do inference using your model (M22)
-* [ ] Deploy your model in GCP using either Functions or Run as the backend (M23)
+* [x] Create a FastAPI application that can do inference using your model (M22)
+* [x] Deploy your model in GCP using either Functions or Run as the backend (M23)
 * [ ] Write API tests for your application and setup continues integration for these (M24)
 * [ ] Load test your application (M24)
 * [ ] Create a more specialized ML-deployment API using either ONNX or BentoML, or both (M25)
-* [ ] Create a frontend for your API (M26)
+* [x] Create a frontend for your API (M26)
 
 ### Week 3
 
@@ -130,6 +130,7 @@ will check the repositories and the code to verify your answers.
 > Answer:
 
 --- s194045 Niklas August Kjølbro ---
+--- s185034 Andreas Patscheider ---
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
@@ -197,7 +198,7 @@ These steps should be all that is needed to reproduce the environment and work o
 >
 > Answer:
 
---- The cookiecutter MLOps template provided in M6 was the starting point and was used throughout the project. We used all the default folders, except for the "notebook" folder, which we removed as we did not use any Jupyter notebooks in our project. In addition to the default structure, we added new folders, including "API" and "prediction_api," to set up and deploy the Google Cloud API for serving the model and handling predictions. The cookiecutter template significantly simplified the project setup, helping us quickly organize and structure our code from the beginning, which resulted in us not having to waste time reorganizing and structuring our code and project later on. This allowed us instead to focus on the core implementation and follow the course learning objectives. ---
+--- The cookiecutter MLOps template provided in M6 was the starting point and was used throughout the project. We used all the default folders, except for the "notebook" folder, which we removed as we did not use any Jupyter notebooks in our project. In addition to the default structure, we added new folders as the 'frontend-backend' to set up and deploy the Google Cloud API for serving the model and handling predictions. The cookiecutter template significantly simplified the project setup, helping us quickly organize and structure our code from the beginning, which resulted in us not having to waste time reorganizing and structuring our code and project later on. This allowed us instead to focus on the core implementation and follow the course learning objectives. ---
 
 ### Question 6
 

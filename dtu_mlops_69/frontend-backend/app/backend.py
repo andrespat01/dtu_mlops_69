@@ -133,6 +133,12 @@ async def load_model():
     print("Model loaded.")
 
 
+# create root endpoint
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Disaster Tweet Classifier!"}
+
+
 class InferenceRequest(BaseModel):
     input_data: list[str]
     location: Optional[str] = None
