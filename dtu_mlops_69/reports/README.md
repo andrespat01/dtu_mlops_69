@@ -820,7 +820,7 @@ Additionally, setting up workflows for distributed training and monitoring highl
 > Answer:
 
 --- 
-s194045: 
+s194045: Contributed to the project by organizing its structure and managing dependencies. Implemented data.py for data preprocessing and cloud storage integration, and developed model.py using LightningModule and HuggingFace, including the creation of a confusion matrix. Set up configuration files to ensure reproducibility and integrated WandB for logging and hyperparameter sweeps (although sweeps were not executed due to time constraints). Contributed to unit testing, ensured code coverage, and briefly looked at cloud integration.
 
 s185034: Contributed to the MLOps project by setting up the environment, initializing the file structure, developing and deploying a FastAPI application for inference, implementing API tests, conducting load testing, and creating a Streamlit frontend connected to the backend API.
 
