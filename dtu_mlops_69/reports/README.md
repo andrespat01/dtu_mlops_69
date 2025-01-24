@@ -628,12 +628,7 @@ Yes, we successfully deployed our API both locally and in the cloud.
 - The containerized API image was pushed to Google Cloud Artifact Registry and deployed on Google Cloud.
 - To invoke the cloud-deployed API, users replace the local URL (127.0.0.1) with the public endpoint provided by Google Cloud:
     ```bash
-    curl -X POST "https://backend-912555186187.europe-west3.run.app/predict/" \
--H "Content-Type: application/json" \
--d '{
-      "input_data": ["The recent fires in California have been devastating"],
-      "location": "California"
-    }'
+    curl -X POST "https://backend-912555186187.europe-west3.run.app/predict/" \ -H "Content-Type: application/json" \ -d '{"input_data": ["The recent fires in California have been devastating"],"location": "California"}'
     ```
 - The cloud-deployed API was tested using the same input data to ensure consistent behavior and response.
 
