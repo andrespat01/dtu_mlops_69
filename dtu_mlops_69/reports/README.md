@@ -284,7 +284,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
---- We tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
+--- We tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. The data is stored in the cloud using Google Cloud Storage. ---
 
 ### Question 11
 
