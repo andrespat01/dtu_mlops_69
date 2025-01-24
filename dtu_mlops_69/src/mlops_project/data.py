@@ -11,9 +11,10 @@ import subprocess
 
 
 class MyDataset(Dataset):
-    """My custom dataset."""
+    """My dataset."""
 
     def __init__(self, raw_data_path: Path) -> None:
+        """ Initialize the dataset. """
         self.data_path = raw_data_path
         self.data = pd.read_csv(self.data_path)
 
@@ -22,7 +23,14 @@ class MyDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, index: int) -> dict:
-        """Return a given sample from the dataset."""
+        """Return a given sample from the dataset.
+        
+        Args:
+            index (int): Index of the sample to return.
+            
+        Returns:
+            dict: A dictionary containing the sample data.
+        """
         row = self.data.iloc[index]
         return {
             "id": row["id"],
@@ -33,7 +41,11 @@ class MyDataset(Dataset):
         }
 
     def preprocess(self, output_folder: Path) -> None:
-        """Preprocess the raw data and save it to the output folder."""
+        """Preprocess the raw data and save it to the output folder.
+        
+        Args:
+            output_folder (Path): Path to the folder where the processed data will be saved.   
+        """
         output_folder = Path(output_folder)
         output_folder.mkdir(parents=True, exist_ok=True)
 
@@ -81,7 +93,12 @@ class MyDataset(Dataset):
 
 
 def download_dataset(bucket_name: str = "d_tweets", blob_name: str = "tweets.csv", raw_data_dir: Path = Path("data/raw")) -> None:
-    """Download dataset from Google Cloud Storage."""
+    """Download dataset from Google Cloud Storage.
+    
+    Args: bucket_name (str): Name of the bucket in GCS. 
+            blob_name (str): Name of the blob to download.
+            raw_data_dir (Path): Path to the directory where the raw data will be saved.    
+    """
     # Create directory for raw data if it doesn't exist
     raw_data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -103,6 +120,13 @@ def download_dataset(bucket_name: str = "d_tweets", blob_name: str = "tweets.csv
 
 
 def preprocess(raw_data_path: str = "data/raw/tweets.csv", output_folder: str = "data/processed") -> None:
+    """Preprocess the raw data and save it to the output folder.
+
+    Args:
+        raw_data_path (str, optional): _description_. Defaults to "data/raw/tweets.csv".
+        output_folder (str, optional): _description_. Defaults to "data/processed".
+    """
+    
     print("Preprocessing data...")
     raw_data_dir = Path(raw_data_path)
     if not raw_data_dir.exists():
@@ -115,7 +139,11 @@ def preprocess(raw_data_path: str = "data/raw/tweets.csv", output_folder: str = 
 
     
 def tweets() -> tuple[torch.utils.data.Dataset, torch.utils.data.Dataset]:
-    """Return train and test datasets for tweets."""
+    """Return train and test datasets for tweets.
+    
+    Returns: 
+        Train and test datasets in the form of torch.utils.data.Dataset.
+    """
     input_ids = torch.load("data/processed/input_ids.pt")
     attention_mask = torch.load("data/processed/attention_mask.pt")
     targets = torch.load("data/processed/targets.pt")

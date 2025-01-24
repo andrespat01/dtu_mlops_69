@@ -88,12 +88,12 @@ will check the repositories and the code to verify your answers.
 * [x] Deploy your model in GCP using either Functions or Run as the backend (M23)
 * [x] Write API tests for your application and setup continues integration for these (M24)
 * [x] Load test your application (M24)
-* [] Create a more specialized ML-deployment API using either ONNX or BentoML, or both (M25)
+* [ ] Create a more specialized ML-deployment API using either ONNX or BentoML, or both (M25)
 * [x] Create a frontend for your API (M26)
 
 ### Week 3
 
-* [ ] Check how robust your model is towards data drifting (M27)
+* [x] Check how robust your model is towards data drifting (M27)
 * [ ] Deploy to the cloud a drift detection API (M27)
 * [ ] Instrument your API with a couple of system metrics (M28)
 * [ ] Setup cloud monitoring of your instrumented application (M28)
@@ -104,7 +104,7 @@ will check the repositories and the code to verify your answers.
 
 ### Extra
 
-* [ ] Write some documentation for your application (M32)
+* [x] Write some documentation for your application (M32)
 * [ ] Publish the documentation to GitHub Pages (M32)
 * [ ] Revisit your initial project description. Did the project turn out as you wanted?
 * [ ] Create an architectural diagram over your MLOps pipeline
@@ -270,7 +270,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
----Yes, we exclusively used GitHub to work on the project and share code. While we did not use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
+---Yes, we used git and GitHub to version control the project and share code. While we did not use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
 
 ### Question 10
 
@@ -285,7 +285,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
---- We tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
+--- We tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. The data is stored in the cloud using Google Cloud Storage. ---
 
 ### Question 11
 
@@ -668,7 +668,37 @@ Yes, we successfully deployed our API both locally and in the cloud.
 >
 > Answer:
 
---- question 25 fill here ---
+--- 
+### Unit Testing and Load Testing of the API
+
+#### **Unit Testing**
+Yes, we performed unit testing on our API to ensure its correctness and reliability. The tests were implemented using the `TestClient` from FastAPI's testing utilities and covered various scenarios, including:
+- Testing the `/` (root) endpoint to verify the API was accessible and returned the expected welcome message.
+- Testing the `/predict/` endpoint with valid inputs, ensuring the predictions were accurate for disaster and non-disaster tweets.
+- Handling edge cases, such as missing or empty inputs, invalid data formats, and very large inputs.
+
+The unit tests confirmed that the API was robust, properly processed input data, and returned appropriate HTTP status codes for different scenarios. 
+While implemented and thought of we never successfully managed to load the model into our testing environment, which is why we never managed to run the tests regarding the model aspect. 
+
+
+#### **Load Testing**
+We conducted load testing for our API using **Locust**, a powerful open-source tool designed for testing the performance of web applications. The testing scenario simulated real-world usage patterns with multiple endpoints:
+1. A GET request to the `/` endpoint to simulate users accessing the root.
+2. POST requests to the `/predict/` endpoint with:
+   - Disaster-related tweets.
+   - Non-disaster-related tweets.
+   - Tweets missing location data.
+
+The testing script included random task weights to represent different user behaviors, and wait times between 1 and 3 seconds to mimic real-world user interaction.
+
+#### **Results**
+From the load test results:
+- **Average Response Time**: The average response time of the API was approximately **60 ms**, demonstrating consistent performance under load.
+- **99th Percentile Response Time**: The 99th percentile response time was **160 ms**, indicating that even under heavy load, the API maintained acceptable latency for the vast majority of requests.
+- **Requests Per Second (RPS)**: The API handled an average of **4 requests per second**, showcasing its ability to process concurrent traffic effectively.
+These metrics confirm that the API is robust and capable of handling moderate traffic loads efficiently. However, further tuning could improve performance for higher request volumes.
+
+---
 
 ### Question 26
 
@@ -683,7 +713,13 @@ Yes, we successfully deployed our API both locally and in the cloud.
 >
 > Answer:
 
---- question 26 fill here ---
+--- 
+We did not manage to implement full monitoring ourselves, aside from basic data drift detection that was not fully tested.
+However, we are tracking several key API performance metrics provided by Cloud Run, including request count, latencies, container resource utilization (CPU, memory), and container instance counts. 
+These metrics help us identify potential bottlenecks, performance degradation, and resource overuse, which informs us where to improve both the model and infrastructure to achieve long-term stability and scalability for our application. 
+This is why we would like to implement proper monitoring of our API ourselves as it would help us track performance, detect issues early, and ensure the model and infrastructure remain reliable and scalable over time.
+
+ ---
 
 ## Overall discussion of project
 
