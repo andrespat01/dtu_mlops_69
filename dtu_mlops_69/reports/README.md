@@ -236,7 +236,8 @@ Typing was used throughout all functions in the project to improve code clarity 
 >
 > Answer:
 
---- Unit tests were created for the data, model, and later the API. The data test ensures the dataset is correct, with the right number of samples (9096 training, 2274 testing), and validates input data shapes (input_ids and attention_mask of size 61) and target labels (1). The model test checks the forward pass output shape (2) and ensures the output is a tensor. It also verifies that the loss is correctly computed during the training step.The API test checks that the response from the deployed API contains the correct status code, valid JSON, and a prediction value of 0 or 1.
+--- 
+Unit tests were created for the data, model, and later the API. The data test ensures the dataset is correct, with the right number of samples (9096 training, 2274 testing), and validates input data shapes (input_ids and attention_mask of size 61) and target labels (1). The model test checks the forward pass output shape (2) and ensures the output is a tensor. It also verifies that the loss is correctly computed during the training step.The API test checks that the response from the deployed API contains the correct status code, valid JSON, and a prediction value of 0 or 1.
 Unit tests
  ---
 
@@ -430,6 +431,7 @@ Link to Dockerfiles:
 [Link to the Backend Dockerfile](/../frontend-backend/backend.dockerfile) 
 
 [Link to the Frontend Dockerfile](/../frontend-backend/frontend.dockerfile)
+
 ---
 
 ### Question 16
@@ -500,7 +502,7 @@ These methods combined helped us address bugs and maintain a robust application 
 > Answer:
 
 --- 
-We used the bucket service for two purposes. One for storing our data, which can be seen [here](/figures/bucket_data.png), and the other for storing our model artifacts, which can be seen [here](dtu_mlops_69/reports/figures/bucket_model.png). The bucket service allowed us to store and access data and model artifacts in a scalable and secure manner.---
+We used the bucket service for two purposes. One for storing our data, which can be seen [here](/reports/figures/bucket_data.png), and the other for storing our model artifacts, which can be seen [here](reports/figures/bucket_model.png). The bucket service allowed us to store and access data and model artifacts in a scalable and secure manner.---
 ---
 
 ### Question 20
