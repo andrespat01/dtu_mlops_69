@@ -238,7 +238,6 @@ Typing was used throughout all functions in the project to improve code clarity 
 
 --- 
 Unit tests were created for the data, model, and later the API. The data test ensures the dataset is correct, with the right number of samples (9096 training, 2274 testing), and validates input data shapes (input_ids and attention_mask of size 61) and target labels (1). The model test checks the forward pass output shape (2) and ensures the output is a tensor. It also verifies that the loss is correctly computed during the training step.The API test checks that the response from the deployed API contains the correct status code, valid JSON, and a prediction value of 0 or 1.
-Unit tests
  ---
 
 ### Question 8
@@ -270,7 +269,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
----Yes, we exclusively used GitHub to work on the project and share code. While we didn’t use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
+---Yes, we exclusively used GitHub to work on the project and share code. While we did not use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
 
 ### Question 10
 
@@ -285,7 +284,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
---- I tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
+--- We tried to use DVC for data version control in data.py but faced challenges getting it to work smoothly with Git. Despite configuring Git not to ignore the DVC files, I ran into issues where .gitignore kept ignoring them, causing errors. This made it difficult to track changes automatically in the data, without having to prompt it in the terminal, which is one of the main benefits of DVC. Having version control for data would allow us to easily track and manage different versions of the dataset for reproducibility. It is also useful for tracking how it evolves during training and preprocessing. It would also make collaboration more efficient, as teammates could pull the exact version of the data used for experiments. ---
 
 ### Question 11
 
