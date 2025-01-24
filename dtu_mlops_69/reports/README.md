@@ -825,7 +825,7 @@ s185034: Contributed to the MLOps project by setting up the environment, initial
 
 s200621:
 
-s240398:
+s240398: Contributed to the project by implementing cloud VM training and monitoring, data/bucket structure, linting and automatic workflows.
 
 s203953:
 
