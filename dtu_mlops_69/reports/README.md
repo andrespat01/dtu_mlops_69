@@ -426,8 +426,8 @@ Finally to tag and push the Docker images to Google Cloud Artifact Registry, the
 - **Google cloud run deployment**: `gcloud run deploy frontend \ --image=europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/frontend:latest \ --region=europe-west3 \ --platform=managed \` & `gcloud run deploy backend \ --image=europe-west3-docker.pkg.dev/dtumlops-448112/frontend-backend/backend:latest \ --region=europe-west3 \ --platform=managed` <br>
 
 Link to Dockerfiles:
-[Link to the Backend Dockerfile](frontend-backend/backend.dockerfile)
-[Link to the Frontend Dockerfile](frontend-backend/frontend.dockerfile)
+[Link to the Backend Dockerfile](../frontend-backend/backend.dockerfile) <br>
+[Link to the Frontend Dockerfile](../frontend-backend/frontend.dockerfile)
 ---
 
 ### Question 16
