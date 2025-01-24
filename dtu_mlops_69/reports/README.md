@@ -688,7 +688,6 @@ We conducted load testing for our API using **Locust**, a powerful open-source t
 The testing script included random task weights to represent different user behaviors, and wait times between 1 and 3 seconds to mimic real-world user interaction.
 
 #### **Results**
-#### **Results**
 From the load test results:
 - **Average Response Time**: The average response time of the API was approximately **60 ms**, demonstrating consistent performance under load.
 - **99th Percentile Response Time**: The 99th percentile response time was **160 ms**, indicating that even under heavy load, the API maintained acceptable latency for the vast majority of requests.
