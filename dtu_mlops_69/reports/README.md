@@ -508,8 +508,6 @@ The bucket service allowed us to store and access data and model artifacts in a 
 
 ---
 
-
-
 ### Question 20
 
 > **Upload 1-2 images of your GCP artifact registry, such that we can see the different docker images that you have**
@@ -517,7 +515,10 @@ The bucket service allowed us to store and access data and model artifacts in a 
 >
 > Answer:
 
---- question 20 fill here ---
+--- 
+In the following picture you can see the different docker images that we have stored in our GCP artifact registry. ![here](figures/artifact.png)
+
+---
 
 ### Question 21
 
@@ -526,7 +527,10 @@ The bucket service allowed us to store and access data and model artifacts in a 
 >
 > Answer:
 
---- question 21 fill here ---
+--- 
+In the following picture the build history of the images that have been built in our project can be seen. The first enclosed picture shows the build history of our backend image, and the second picture shows the build history of our frontend image. ![here](figures/backend_build.png) ![here](figures/frontend_build.png)
+
+---
 
 ### Question 22
 
