@@ -124,13 +124,24 @@ def load_model_from_gcs(bucket_name: str, model_file: str):
     return model
 
 
-# Load model on startup
+model_loaded = False  # Global flag to track model readiness
+
+
 @app.on_event("startup")
 async def load_model():
-    global model
+    global model, model_loaded
     print("Loading model...")
     model = load_model_from_gcs(BUCKET_NAME, MODEL_FILE)
+    model_loaded = True  # Set the flag to True once the model is loaded
     print("Model loaded.")
+
+
+@app.get("/health")
+async def health_check():
+    if model_loaded:
+        return {"status": "ok", "message": "Model is loaded and API is ready."}
+    else:
+        return {"status": "loading", "message": "Model is still loading."}
 
 
 # create root endpoint
@@ -150,7 +161,9 @@ class InferenceResponse(BaseModel):
 
 @app.post("/predict/")
 async def predict(request: InferenceRequest):
-    """Inference endpoint for disaster tweet classification."""
+    global model  # Ensure you're referencing the global model
+    if model is None:
+        raise HTTPException(status_code=500, detail="Model is not loaded.")
     input_data = request.input_data
     location = clean_text(request.location) if request.location else "unknown"
 

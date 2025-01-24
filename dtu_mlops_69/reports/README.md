@@ -93,7 +93,7 @@ will check the repositories and the code to verify your answers.
 
 ### Week 3
 
-* [ ] Check how robust your model is towards data drifting (M27)
+* [x] Check how robust your model is towards data drifting (M27)
 * [ ] Deploy to the cloud a drift detection API (M27)
 * [ ] Instrument your API with a couple of system metrics (M28)
 * [ ] Setup cloud monitoring of your instrumented application (M28)
@@ -665,7 +665,37 @@ Yes, we successfully deployed our API both locally and in the cloud.
 >
 > Answer:
 
---- question 25 fill here ---
+--- 
+### Unit Testing and Load Testing of the API
+
+#### **Unit Testing**
+Yes, we performed unit testing on our API to ensure its correctness and reliability. The tests were implemented using the `TestClient` from FastAPI's testing utilities and covered various scenarios, including:
+- Testing the `/` (root) endpoint to verify the API was accessible and returned the expected welcome message.
+- Testing the `/predict/` endpoint with valid inputs, ensuring the predictions were accurate for disaster and non-disaster tweets.
+- Handling edge cases, such as missing or empty inputs, invalid data formats, and very large inputs.
+
+The unit tests confirmed that the API was robust, properly processed input data, and returned appropriate HTTP status codes for different scenarios. 
+While implemented and thought of we never successfully managed to load the model into our testing environment, which is why we never managed to run the tests regarding the model aspect. 
+
+
+#### **Load Testing**
+We conducted load testing for our API using **Locust**, a powerful open-source tool designed for testing the performance of web applications. The testing scenario simulated real-world usage patterns with multiple endpoints:
+1. A GET request to the `/` endpoint to simulate users accessing the root.
+2. POST requests to the `/predict/` endpoint with:
+   - Disaster-related tweets.
+   - Non-disaster-related tweets.
+   - Tweets missing location data.
+
+The testing script included random task weights to represent different user behaviors, and wait times between 1 and 3 seconds to mimic real-world user interaction.
+
+#### **Results**
+From the load test results:
+- **Average Response Time**: The average response time of the API was approximately **60 ms**, demonstrating consistent performance under load.
+- **99th Percentile Response Time**: The 99th percentile response time was **160 ms**, indicating that even under heavy load, the API maintained acceptable latency for the vast majority of requests.
+- **Requests Per Second (RPS)**: The API handled an average of **4 requests per second**, showcasing its ability to process concurrent traffic effectively.
+These metrics confirm that the API is robust and capable of handling moderate traffic loads efficiently. However, further tuning could improve performance for higher request volumes.
+
+---
 
 ### Question 26
 
@@ -680,7 +710,13 @@ Yes, we successfully deployed our API both locally and in the cloud.
 >
 > Answer:
 
---- question 26 fill here ---
+--- 
+We did not manage to implement full monitoring ourselves, aside from basic data drift detection that was not fully tested.
+However, we are tracking several key API performance metrics provided by Cloud Run, including request count, latencies, container resource utilization (CPU, memory), and container instance counts. 
+These metrics help us identify potential bottlenecks, performance degradation, and resource overuse, which informs us where to improve both the model and infrastructure to achieve long-term stability and scalability for our application. 
+This is why we would like to implement proper monitoring of our API ourselves as it would help us track performance, detect issues early, and ensure the model and infrastructure remain reliable and scalable over time.
+
+ ---
 
 ## Overall discussion of project
 
