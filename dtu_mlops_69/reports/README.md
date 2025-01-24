@@ -722,6 +722,7 @@ Working in the cloud offered several advantages:
 3. **Cost-Effectiveness**: The overall cost of running the project remained very low, making it accessible for development and testing purposes.
 
 Overall, the experience was positive, and the cloud environment provided the flexibility and tools required to efficiently implement and deploy the project.
+![here](figures/costs.png)
 
 ---
 
