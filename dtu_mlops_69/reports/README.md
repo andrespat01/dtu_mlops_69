@@ -458,7 +458,6 @@ Debugging was an essential part of our project workflow, and we employed differe
 
 3. **Profiling the Code**  
    While we did not perform extensive profiling, we ensured the main components of the system were efficient by monitoring performance metrics during testing. Logging and observing runtime behaviors served as a lightweight profiling approach to verify functionality.
-
 These methods combined helped us address bugs and maintain a robust application pipeline.
 ---
 
