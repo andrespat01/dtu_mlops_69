@@ -824,7 +824,7 @@ s194045: Contributed to the project by organizing its structure and managing dep
 
 s185034: Contributed to the MLOps project by setting up the environment, initializing the file structure, developing and deploying a FastAPI application for inference, implementing API tests, conducting load testing, and creating a Streamlit frontend connected to the backend API.
 
-s200621:
+s200621: Contributed by structuring the repository and setting up the version control correctly.
 
 s240398: Contributed to the project by implementing cloud VM training and monitoring, data/bucket structure, linting and automatic workflows.
 
