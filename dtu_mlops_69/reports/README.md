@@ -782,7 +782,8 @@ This additional implementation enhances usability by providing a seamless way fo
 >
 > Answer:
 
---- question 29 fill here ---
+--- Our local setup starts with the integrated FastAPI for building the backend API and Streamlitt for the frontend. W&B tracked the experiments and logged the metrics when training. Hydra was used for configuriations which helped reproducibility. Version control was done with github actions workflows, which provided flexibility for running the application on Ubuntu, windows and macOS. These workflows were unit tests for validating functionality and linting for enforcing code standards with flake8. These workflows are triggered when ever a commit or pull request is issued on the mainbranch. 
+The backend and frontend are containerized via Docker and are pushed to the Google Cloud Artifact Registry. The Compute Engine is used for training the model in the cloud and the cloud storage buckets are used to store the dataset and the trained models. The last part would be the user interaction which is the frontend application where they prompt a message, this applies the inference and prompts a result. ---
 
 ### Question 30
 
