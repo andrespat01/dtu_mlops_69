@@ -818,4 +818,16 @@ Additionally, setting up workflows for distributed training and monitoring highl
 >
 > Answer:
 
---- question 31 fill here ---
+--- 
+s194045: 
+
+s185034: Contributed to the MLOps project by setting up the environment, initializing the file structure, developing and deploying a FastAPI application for inference, implementing API tests, conducting load testing, and creating a Streamlit frontend connected to the backend API.
+
+s200621:
+
+s240398:
+
+s203953:
+
+
+---
