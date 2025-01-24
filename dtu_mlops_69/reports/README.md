@@ -129,13 +129,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
-<<<<<<< HEAD
---- s194045, s185034, s200621 ---
-=======
---- s194045 Niklas August Kjølbro ---
---- s185034 Andreas Patscheider ---
---- s240398 Sofus Laub Erdal ---
->>>>>>> 430391c7aed7f215eeb2d6d3d1892f559637e9d3
+--- s194045, s185034, s200621, s240398 ---
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
