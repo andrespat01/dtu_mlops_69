@@ -301,7 +301,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
---- question 11 fill here ---
+--- We have 4 different GitHub actions that are triggered on different occasions. The first is a code checker that checks the format of the code using ruff and then formats is using ruff. The second action is monitoring the raw data for changes. If the data changes the actions runs preprocessing on the raw data. The third action triggers on a model update either in the models/ directory or in the src/dtumlops_project/model.py file. The model is then retrained and the result is uploaded. The fourth action triggers on any push to the main branch. The action lints the code with flake8 and runs the unit test and makes a coverage report. ---
 
 ## Running code and tracking experiments
 
