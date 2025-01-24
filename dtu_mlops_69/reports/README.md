@@ -754,7 +754,32 @@ This is why we would like to implement proper monitoring of our API ourselves as
 >
 > Answer:
 
---- question 28 fill here ---
+--- 
+### Additional Implementations in the Project
+
+#### **Frontend for the API**
+We implemented a simple yet effective frontend using **Streamlit**, which allows users to interact with our deployed backend API. The frontend serves as an interface for the **Disaster Tweet Classifier**, enabling users to input tweets and optional location data for classification.
+
+#### **Key Features of the Frontend**
+1. **User Input**:
+   - Users can enter a tweet and optionally provide location information via a text input field.
+   - The interface ensures validation, preventing empty or invalid submissions.
+
+2. **Backend Integration**:
+   - The frontend dynamically retrieves the URL of the deployed backend service hosted on **Google Cloud Run** using the **Google Cloud Run Python Client**.
+   - The user input is sent to the `/predict/` endpoint of the backend API, which returns a classification result.
+
+3. **Prediction Results**:
+   - The frontend displays a user-friendly message based on the prediction (e.g., whether the tweet is related to a disaster).
+   - For transparency and debugging, the raw JSON response from the backend is also shown.
+
+#### **Deployment**
+The frontend was deployed as a **Google Cloud Run** service, making it publicly accessible at:
+[Frontend URL](https://frontend-912555186187.europe-west3.run.app)
+
+This additional implementation enhances usability by providing a seamless way for users to interact with the API, making the system more accessible and intuitive.
+
+---
 
 ### Question 29
 
