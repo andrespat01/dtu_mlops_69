@@ -129,9 +129,7 @@ will check the repositories and the code to verify your answers.
 >
 > Answer:
 
---- s194045 Niklas August Kjølbro ---
---- s185034 Andreas Patscheider ---
---- s200621 Mads Rumle Nordstrøm ---
+--- s194045, s185034, s200621 ---
 
 ### Question 3
 > **A requirement to the project is that you include a third-party package not covered in the course. What framework**
@@ -218,7 +216,7 @@ These steps should be all that is needed to reproduce the environment and work o
 
 In terms of documentation, docstrings were used in functions. The aim was to strike a balance in documentation: not too brief to miss important details, but not excessive to overwhelm users. This follows the principle "Code tells you how; comments tell you why."
 
-Typing was used throughout all functions in the project to improve code clarity and reduce potential errors regarding the types of function arguments and return values, especially as the project grows.---
+Typing was used throughout all functions in the project to improve code clarity and reduce potential errors regarding the types of function arguments and return values, especially as the project grows. ---
 
 ## Version control
 
@@ -237,9 +235,7 @@ Typing was used throughout all functions in the project to improve code clarity 
 >
 > Answer:
 
---- 
-Unit tests were created for the data, model, and later the API. The data test ensures the dataset is correct, with the right number of samples (9096 training, 2274 testing), and validates input data shapes (input_ids and attention_mask of size 61) and target labels (1). The model test checks the forward pass output shape (2) and ensures the output is a tensor. It also verifies that the loss is correctly computed during the training step.The API test checks that the response from the deployed API contains the correct status code, valid JSON, and a prediction value of 0 or 1.
- ---
+--- Unit tests were created for the data, model, and later the API. The data test ensures the dataset is correct, with the right number of samples (9096 training, 2274 testing), and validates input data shapes (input_ids and attention_mask of size 61) and target labels (1). The model test checks the forward pass output shape (2) and ensures the output is a tensor. It also verifies that the loss is correctly computed during the training step.The API test checks that the response from the deployed API contains the correct status code, valid JSON, and a prediction value of 0 or 1. ---
 
 ### Question 8
 
@@ -270,7 +266,7 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 >
 > Answer:
 
----Yes, we used git and GitHub to version control the project and share code. While we did not use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
+--- Yes, we used git and GitHub to version control the project and share code. While we did not use branches in our workflow, which is generally considered bad practice, we still managed to make it work. However, implementing branches would have significantly improved our process. Branches allow us to work on different features independently without interfering with the main codebase. They make collaboration much easier by reducing conflicts, enabling parallel development, and preventing accidental overwriting of each other's work. The main branch should represent the stable, bug-free version of the code, while branches are used for testing and development. We would merge into the main branch only when we’re confident that our branch is working as expected and free of bugs. Pull requests serve as an essential code review process before merging, allowing team members to provide feedback, identify issues early, and ensure that only code meeting quality standards is approved.---
 
 ### Question 10
 
@@ -319,7 +315,9 @@ These are many reasons not to trust code coverage, for reason is that the tests 
 > Example:
 > *We used a simple argparser, that worked in the following way: Python  my_script.py --lr 1e-3 --batch_size 25*
 >
-> Answer: --- I configured the experiment using a config.yaml file to specify key hyperparameters like learning rate, batch size, and epochs, ensuring reproducibility. However, training was computationally intensive, taking a long time and using significant memory. To optimize this, I implemented a sweep configuration with W&B, defining hyperparameter ranges for automated experimentation (e.g., learning rate, batch size, and epochs). The sweep was designed to find the best parameters through multiple runs but wasn't executed due to the excessive time it would require.
+> Answer:
+
+--- We configured the experiment using a config.yaml file to specify key hyperparameters like learning rate, batch size, and epochs, ensuring reproducibility. However, training was computationally intensive, taking a long time and using significant memory. To optimize this, I implemented a sweep configuration with W&B, defining hyperparameter ranges for automated experimentation (e.g., learning rate, batch size, and epochs). The sweep was designed to find the best parameters through multiple runs but wasn't executed due to the excessive time it would require.
 
 To run the configs.yaml simply run:
 python src/mlops_project/model.py --config-path configs/config.yaml
@@ -330,9 +328,7 @@ python src/mlops_project/model.py --lr 0.002 --batch-size 16 --epochs 2
 For sweep:
 wandb sweep configs/sweep.yaml   
 Then pass the sweep agent:
-wandb agent <sweep_id>
-
----
+wandb agent <sweep_id> ---
 
 ### Question 13
 
@@ -364,8 +360,7 @@ wandb agent <sweep_id>
 >
 > Answer:
 
---- 
-![this figure](/figures/WANDB_config.png)
+--- ![this figure](/figures/WANDB_config.png)
 The provided screenshot from W&B shows the metrics tracked during training: train_acc, train_loss, val_acc, val_loss, and epoch.
 * Train Accuracy (train_acc): Measures how well the model performs on the training data. It helps monitor overfitting or underfitting trends.
 * Train Loss (train_loss): Tracks the error the model makes on the training set. A decreasing loss indicates learning progress.
@@ -380,8 +375,7 @@ Additional confusion matrix was made to evaluate the classification performance 
 The confusion matrix reveals an imbalance in the model's performance. While it performs well on Class 0 (real-disaster tweets), with low misclassification (24 errors), it struggles with Class 1 (non-disaster tweets), misclassifying a significant portion (230 errors).
 Suggests:
 1) Class imbalance in the dataset, which biases the model toward the majority class (non-disaster tweets).
-2) The need for additional techniques to improve performance. However, improving the model was not prioritized in this course, as the main focus was not on maximizing model accuracy but on understanding the workflow, experimentation, and operational processes of machine learning development.
- ---
+2) The need for additional techniques to improve performance. However, improving the model was not prioritized in this course, as the main focus was not on maximizing model accuracy but on understanding the workflow, experimentation, and operational processes of machine learning development. ---
 
 ### Question 15
 
@@ -396,8 +390,7 @@ Suggests:
 >
 > Answer:
 
---- 
-In our MLOps project, Docker played a critical role in ensuring the seamless deployment of both the backend API and the frontend application. Here’s how Docker was utilized: <br>
+--- In our MLOps project, Docker played a critical role in ensuring the seamless deployment of both the backend API and the frontend application. Here’s how Docker was utilized: <br>
 
 #### Backend API:
 1. **Containerizing the Backend API**  
@@ -430,9 +423,7 @@ Link to Dockerfiles:
 
 [Backend Dockerfile](/../frontend-backend/backend.dockerfile) 
 
-[Frontend Dockerfile](/../frontend-backend/frontend.dockerfile)
-
----
+[Frontend Dockerfile](/../frontend-backend/frontend.dockerfile) ---
 
 ### Question 16
 
@@ -447,8 +438,7 @@ Link to Dockerfiles:
 >
 > Answer:
 
---- 
-Debugging was an essential part of our project workflow, and we employed different techniques depending on the stage of development:
+--- Debugging was an essential part of our project workflow, and we employed different techniques depending on the stage of development:
 
 1. **Debugging During Development**  
    While writing and refining our code, we extensively used breakpoints in our development environment to verify the execution flow and inspect variable states. This step-by-step approach helped us isolate issues at specific points in the code and ensured each component behaved as expected.
@@ -458,9 +448,7 @@ Debugging was an essential part of our project workflow, and we employed differe
 
 3. **Profiling the Code**  
    While we did not perform extensive profiling, we ensured the main components of the system were efficient by monitoring performance metrics during testing. Logging and observing runtime behaviors served as a lightweight profiling approach to verify functionality. <br>
-These methods combined helped us address bugs and maintain a robust application pipeline.
-
----
+These methods combined helped us address bugs and maintain a robust application pipeline. ---
 
 ## Working in the cloud
 
@@ -509,12 +497,9 @@ Once the VM was set up, we cloned our GitHub repository into the virtual machine
 >
 > Answer:
 
---- 
-We used the bucket service for two purposes. One for storing our data, which can be seen enclosed below ![here](figures/bucket_data.png)
+--- We used the bucket service for two purposes. One for storing our data, which can be seen enclosed below ![here](figures/bucket_data.png)
 And the other for storing our model artifacts, which is enclosed in the following: ![here](figures/bucket_model.png). 
-The bucket service allowed us to store and access data and model artifacts in a scalable and secure manner.
-
----
+The bucket service allowed us to store and access data and model artifacts in a scalable and secure manner. ---
 
 ### Question 20
 
@@ -523,10 +508,7 @@ The bucket service allowed us to store and access data and model artifacts in a 
 >
 > Answer:
 
---- 
-In the following picture you can see the different docker images that we have stored in our GCP artifact registry. ![here](figures/artifact.png)
-
----
+--- In the following picture you can see the different docker images that we have stored in our GCP artifact registry. ![here](figures/artifact.png) ---
 
 ### Question 21
 
@@ -535,10 +517,7 @@ In the following picture you can see the different docker images that we have st
 >
 > Answer:
 
---- 
-In the following picture the build history of the images that have been built in our project can be seen. The first enclosed picture shows the build history of our backend image, and the second picture shows the build history of our frontend image. ![here](figures/backend_build.png) ![here](figures/frontend_build.png)
-
----
+--- In the following picture the build history of the images that have been built in our project can be seen. The first enclosed picture shows the build history of our backend image, and the second picture shows the build history of our frontend image. ![here](figures/backend_build.png) ![here](figures/frontend_build.png) ---
 
 ### Question 22
 
@@ -568,7 +547,7 @@ gcloud ml69 custom-jobs create \
     --display-name=test-run \
     --config=configs/config_gpu.yaml \
     --command 'python src/mlops_project/model.py' \
-    --args '["--epochs", "3"]'      ---
+    --args '["--epochs", "3"]' ---
 
 ## Deployment
 
@@ -585,8 +564,7 @@ gcloud ml69 custom-jobs create \
 >
 > Answer:
 
---- 
-### API Implementation for the Model
+---  ### API Implementation for the Model
 
 Yes, we successfully wrote an API for our model using **FastAPI** to enable easy interaction and deployment of the machine learning model.
 
@@ -607,9 +585,7 @@ Yes, we successfully wrote an API for our model using **FastAPI** to enable easy
 4. **Logging and Deployment**:  
    The API was designed with robust logging and deployed as a containerized service on **Google Cloud Artifact Registry**, ensuring high scalability and accessibility.
 
-This modular approach makes the API efficient, reusable, and easy to maintain.
-
----
+This modular approach makes the API efficient, reusable, and easy to maintain. ---
 
 ### Question 24
 
@@ -625,8 +601,7 @@ This modular approach makes the API efficient, reusable, and easy to maintain.
 >
 > Answer:
 
----
-#### Deployment of the API
+--- #### Deployment of the API
 
 Yes, we successfully deployed our API both locally and in the cloud.
 
@@ -648,9 +623,7 @@ Yes, we successfully deployed our API both locally and in the cloud.
     ```bash
     curl -X POST "https://backend-912555186187.europe-west3.run.app/predict/" \ -H "Content-Type: application/json" \ -d '{"input_data": ["The recent fires in California have been devastating"],"location": "California"}'
     ```
-- The cloud-deployed API was tested using the same input data to ensure consistent behavior and response.
-
----
+- The cloud-deployed API was tested using the same input data to ensure consistent behavior and response. ---
 
 ### Question 25
 
@@ -665,8 +638,7 @@ Yes, we successfully deployed our API both locally and in the cloud.
 >
 > Answer:
 
---- 
-### Unit Testing and Load Testing of the API
+---  ### Unit Testing and Load Testing of the API
 
 #### **Unit Testing**
 Yes, we performed unit testing on our API to ensure its correctness and reliability. The tests were implemented using the `TestClient` from FastAPI's testing utilities and covered various scenarios, including:
@@ -693,9 +665,7 @@ From the load test results:
 - **Average Response Time**: The average response time of the API was approximately **60 ms**, demonstrating consistent performance under load.
 - **99th Percentile Response Time**: The 99th percentile response time was **160 ms**, indicating that even under heavy load, the API maintained acceptable latency for the vast majority of requests.
 - **Requests Per Second (RPS)**: The API handled an average of **4 requests per second**, showcasing its ability to process concurrent traffic effectively.
-These metrics confirm that the API is robust and capable of handling moderate traffic loads efficiently. However, further tuning could improve performance for higher request volumes.
-
----
+These metrics confirm that the API is robust and capable of handling moderate traffic loads efficiently. However, further tuning could improve performance for higher request volumes. ---
 
 ### Question 26
 
@@ -710,13 +680,10 @@ These metrics confirm that the API is robust and capable of handling moderate tr
 >
 > Answer:
 
---- 
-We did not manage to implement full monitoring ourselves, aside from basic data drift detection that was not fully tested.
+--- We did not manage to implement full monitoring ourselves, aside from basic data drift detection that was not fully tested.
 However, we are tracking several key API performance metrics provided by Cloud Run, including request count, latencies, container resource utilization (CPU, memory), and container instance counts. 
 These metrics help us identify potential bottlenecks, performance degradation, and resource overuse, which informs us where to improve both the model and infrastructure to achieve long-term stability and scalability for our application. 
-This is why we would like to implement proper monitoring of our API ourselves as it would help us track performance, detect issues early, and ensure the model and infrastructure remain reliable and scalable over time.
-
- ---
+This is why we would like to implement proper monitoring of our API ourselves as it would help us track performance, detect issues early, and ensure the model and infrastructure remain reliable and scalable over time. ---
 
 ## Overall discussion of project
 
